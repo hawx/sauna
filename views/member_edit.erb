@@ -1,0 +1,50 @@
+<header>
+  <h1>Edit Member</h1>
+</header>
+
+<form action="<%= @member.url %>/edit" method="post" enctype="multipart/form-date">
+  <span class="field top">
+    <label for="fname">First name</label>
+    <input type="text" id="fname" name="member[fname]" value="<%= @member.fname %>"/>
+  </span>
+  
+  <span class="field top">
+    <label for="lname">Last name</label>
+    <input type="text" id="lname" name="member[sname]" value="<%= @member.sname %>"/>
+  </span>
+  
+  <span class="field top">
+    <label for="age">Age</label>
+    <input type="text" id="age" name="member[age]" value="<%= @member.age %>"/>
+  </span>
+  
+  <span class="field top">
+    <label for="bio">Mini-Bio</label>
+    <textarea type="text" id="bio" name="member[bio]"><%= @member.bio %></textarea>
+  </span>
+  
+  <span class="field top">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="member[username]" value="<%= @member.username %>"/>
+  </span>
+  
+  <span class="field top">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="member[password]" />
+  </span>
+  
+  <span class="field top">
+    <label for="confirm">Confirm Password</label>
+    <input type="password" id="confirm" name="member[password_confirmation]" />
+  </span>
+  
+  <p>Image File: <input type="file" name="avatar" id="avatar" /></p>
+  
+  <% if current_user.admin? then %>
+  <span class="field top">
+    <label for="access">Access Level</label>
+    <input type="text" id="access" name="member[access_level]" value="<%= @member.access_level %>"/>
+  </span>
+  <% end %>
+  <input type="submit" value="Update">
+</form>

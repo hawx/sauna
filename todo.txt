@@ -1,0 +1,3 @@
+- On edit screens make inline labels check if text exists in an input.
+- Create a background, page style, same colour as now, add pages rotated at different angles to add depth.
+- Make it so that going to an id url eg. /post/:id or /discussion/:id or /tag/:id redirects to the name version and also redirects correctly so that posts end up in the correct discussion.

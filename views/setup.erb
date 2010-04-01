@@ -1,0 +1,56 @@
+<header>
+  <h1>Setup</h1>
+</header>
+<form action="/setup" method="post" id="setup" enctype="multipart/form-date">
+  <header>
+    <h3>Forum</h3>
+  </header>
+  <span class="field inline">
+    <label for="sname">Forum Name</label>
+    <input type="text" id="sname" name="sauna[name]"/>
+  </span>
+  
+  <header>
+    <h3>Admin Account</h3>
+  </header>
+  <span class="grouped">
+    <span class="field inline">
+      <label for="fname">First name</label>
+      <input type="text" id="fname" name="member[fname]" />
+    </span>
+    
+    <span class="field inline">
+      <label for="sname">Last name</label>
+      <input type="text" id="sname" name="member[sname]" />
+    </span>
+  </span>
+  
+  <span class="field inline">
+    <label for="age">Age</label>
+    <input type="text" id="age" name="member[age]" />
+  </span>
+  
+  <span class="field inline">
+    <label for="email">john@doe.com</label>
+    <input type="text" id="email" name="member[email]" />
+  </span>
+  
+  <span class="field inline">
+    <label for="username" class="inlined">Username</label>
+    <input type="text" id="username" class="input-text" name="member[username]" />
+  </span>
+  
+  <span class="field inline">
+    <label for="password" class="inlined">Password</label>
+    <input type="password" id="password" class="input-text" name="member[password]" />
+  </span>
+  
+  <span class="field inline">
+    <label for="confirm" class="inlined">Confirm Password</label>
+    <input type="password" id="confirm" class="input-text" name="member[password_confirmation]" />
+  </span>
+  
+  <p>Image File: <input type="file" name="avatar" id="avatar" /></p>
+  
+  <input type="submit" class="right" value="Setup!">
+</form>

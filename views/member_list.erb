@@ -1,0 +1,10 @@
+A list of current members.
+<ul>
+<% @members.each_with_index do |member, i| %>
+  <li>
+    <a href="<%= member.url %>">
+      <%= member.fname %> <%= member.sname %>
+    </a>
+   </li>
+<% end %>
+</ul>

@@ -1,0 +1,33 @@
+<div class="post-view">
+  <header>
+    <h1><a href="<%= @discussion.url %>"><%= @discussion.name %></a>: <%= @post.title %></h1>
+  </header>
+  <div class="meta">
+    <img class="avatar" src="<%= @post.creator.avatar_url %>"/>
+    <a href="<%= @post.creator.url %>" class="username"><%= @post.creator.username %></a><br/>
+    <span class="rank"><%= @post.creator.rank %></span><br/>
+    
+    <time><%= @post.created_at_short_string %></time>
+    <a href="<%= @post.url %>/edit" class="edit">edit</a>
+    <a href="<%= @post.url %>/delete" class="delete">delete</a>
+  </div>
+  <div class="content"><%= @post.m_content %></div>
+  
+  <ul class="comment-list">
+  <% @post.comments.each do |comment| %>
+    <li>
+      <div class="meta">
+        <img class="avatar" src="<%= comment.creator.avatar_url %>">
+        <a href="<%= comment.creator.url %>" class="username"><%= comment.creator.username %></a><br/>
+        <span class="rank"><%= comment.creator.rank %></span><br/>
+        
+        <time><%= comment.created_at_short_string %></time>
+        <a href="<%= comment.url %>/edit" class="edit">edit</a>
+        <a href="<%= comment.url %>/delete" class="delete">delete</a>
+      </div>
+      <div class="content"><%= comment.m_content %></div>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<a href="<%= @post.url %>/new">Add comment</a>

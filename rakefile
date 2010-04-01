@@ -1,0 +1,11 @@
+task :default => :server
+
+desc "start thin server"
+task :server do
+  sh "thin start -R config.ru"
+end
+
+desc "open todo list"
+task :todo do
+  sh "open todo.txt"
+end

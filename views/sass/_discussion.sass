@@ -1,0 +1,64 @@
+.discussion-list
+  list-style: none
+  width: 100%
+  margin-bottom: 54px
+  
+  > li
+  
+    > header
+      width = !wrapper_width
+      display: block
+      background: rgb(240, 240, 235)
+      position: relative
+      padding: 5px 10px
+      -webkit-border-radius: 3px
+      
+      h1
+        font-size: 16px
+        
+      .meta
+        position: absolute
+        top: 5px
+        right: 10px
+        font-size: 12px
+        font-family = !serif_ff
+
+    > .post-list
+      list-style: none
+      
+      li
+        position: relative
+        height: 30px
+        width = !wrapper_width + 18
+        padding: 18px 0
+        border-bottom: 1px dotted rgb(50, 50, 50)
+        
+        header
+          position: absolute
+          left: 20px
+        
+          h1
+            font-size: 18px
+            
+          .meta
+            color = !text_faint
+            font-size: 12px
+            
+        .post-count
+          position: absolute
+          left = !wrapper_width - 200px
+          top: 23px
+          font-size: 18px
+          font-family = !serif_ff
+          
+        .recent-post-info
+          position: absolute
+          left = !wrapper_width - 80px
+          width: 100px
+          color = !text_faint
+          font-size: 12px
+          
+      .show-all
+        display: block
+        width: 100%
+        padding: 5px

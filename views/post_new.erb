@@ -1,0 +1,22 @@
+<header>
+  <h1>New Post</h1>
+</header>
+
+<form action="create" method="post" id="post" enctype="multipart/form-date">
+  <span class="field inline">
+    <label for="title">Title</label>
+    <input type="text" for="title" name="post[title]"/>
+  </span>
+  <span class="field top">
+    <label for="content">Content</label>
+    <textarea type="text" id="content" name="post[content]"></textarea>
+  </span>
+  <span class="field top">
+    <label for="tags">Tags</label>
+    <span class="field inline">
+      <label>tag, tag, tag</label>
+      <input type="text" id="tags" name="tags"/>
+    </span>
+  </span>
+  <input type="submit" class="right" value="Create post">
+</form>

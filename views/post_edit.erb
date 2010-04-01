@@ -1,0 +1,15 @@
+<header>
+  <h1>Edit Post</h1>
+</header>
+
+<form action="<%= @post.url %>/edit" method="post" id="post" enctype="multipart/form-date"> 
+  <span class="field inline">
+    <label>Title</label>
+    <input type="text" name="post[title]" value="<%= @post.title %>"/>
+  </span>
+  <span class="field top">
+    <label>Content</label>
+    <textarea type="text" name="post[content]"><%= @post.content %></textarea>
+  </span>
+  <input type="submit" value="Update post">
+</form>

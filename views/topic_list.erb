@@ -1,0 +1,10 @@
+A list of current topics.
+<ul>
+<% @topics.each_with_index do |topic, i| %>
+  <li>
+    <a href="/topic/view/<%= topic.id %>">
+      <%= topic.name %>
+    </a>
+   </li>
+<% end %>
+</ul>

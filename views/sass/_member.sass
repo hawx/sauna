@@ -1,0 +1,66 @@
+.member-view
+  position: relative
+  padding-bottom: 150px
+
+  header
+    position: relative
+    display: block
+    width = !wrapper_width
+    height: 64px
+  
+    .avatar
+      position: absolute
+      width: 48px
+      height: 48px
+      top: 0
+      left: 0
+  
+    h1
+      position: absolute
+      top: 7px
+      left: 58px
+      font-size: 20px
+      
+    .rank
+      color = !text_faint
+      position: absolute
+      top: 26px
+      left: 58px
+      font-size: 14px
+    
+    a
+      position: absolute
+      top: 7px
+      
+      &.delete
+        right: 0
+        
+      &.edit
+        right: 50px
+    
+  ul
+    width = !wrapper_width/2 - 40
+  
+    li
+      width = !wrapper_width/2 - 40
+      position: relative
+      height: 18px
+    
+      span
+        position: absolute
+        left: 100px
+    
+  .label
+    left: 0
+    font-size: 12px
+    color = !text_faint
+        
+  .bio
+    width = !wrapper_width/2 -10
+    position: absolute
+    float: left
+    top: 64px
+    margin-left = !wrapper_width/2
+    padding-left: 10px
+    height: 100px
+    border-left: 1px solid silver

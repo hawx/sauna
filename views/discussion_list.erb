@@ -1,0 +1,18 @@
+<ul class="discussion-list">
+  <% @sauna.discussions.each do |discussion| %>
+    <li>
+      <header>
+        <h1>
+          <a href="<%= discussion.url %>">
+            <%= discussion.name %>
+          </a>    
+        </h1>
+        <div class="meta"><%= discussion.posts.size %> Posts</div>
+      </header>
+    </li>
+    <% end %>
+</ul>
+
+<% if @sauna.discussions.size == 0 %>
+There are no discussions, create one <a href="/discussion/new">here</a>
+<% end %>

@@ -1,0 +1,7 @@
+<ul>
+  <% @tags.each do |tag| %>
+    <li>
+      <a href="/tag/<%= tag.id %>"><%= tag.name %></a>
+    </li>
+  <% end %>
+</ul>

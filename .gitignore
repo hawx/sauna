@@ -1,0 +1,6 @@
+# file types
+*.psd
+*.db
+
+# folders
+.sass-cache

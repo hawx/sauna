@@ -1,0 +1,10 @@
+<header>
+  <h1><%= @tag.name %></h1>
+</header>
+<ul class="post-list">
+  <% @posts.each do |post| %>
+  <li>
+    <a href="/post/<%= post.id %>"><%= post.title %></a>
+  </li>
+  <% end %>
+</ul>
