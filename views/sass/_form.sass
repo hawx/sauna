@@ -1,47 +1,44 @@
-!form_width = 210px
-!form_padding = 40px
+$form_width: 210px
+$form_padding: 40px
 
 #form-wrapper
   background: rgb(250, 250, 250)
   position: absolute
   left: 50%
   top: 20%
-  margin-left = -(!form_width/2 + !form_padding)
-  padding = !form_padding
-  width = !form_width
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .5)
-  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3)
+  margin-left: -($form_width / 2 + $form_padding)
+  padding: $form_padding
+  width: $form_width
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3)
   
   header
     *
       margin-bottom: 1em
 
-
-
 input[type=text], input[type=password], textarea
   -webkit-border-radius: 2px
-  border: 1px solid #bbb
+  border: 1px solid #bbbbbb
   width: 200px
-  font: 12px/18px #{!sans_ff}
+  font: 12px / 18px #{$sans_ff}
   margin: 0 0 10px
   padding: 3px 4px
-  color: #777
+  color: #777777
   
+  &:focus
+    outline: none
+    border-color: rgb(132, 167, 237)
+    color: #333333
+
 textarea
   height: 150px
-  
+
 label
   cursor: pointer
   font-size: 12px
-  font-family = !sans_ff
+  font-family: $sans_ff
   font-weight: normal
-  
-input:focus, textarea:focus
-  outline: none
-  border-color: #999
-  color: #333
-  border: 1px solid #2daebf
-  
+
 input[type=submit]
   display: block
   border: none
@@ -49,45 +46,48 @@ input[type=submit]
   cursor: pointer
   background: rgb(52, 101, 255) url(/images/button-overlay.png)
   padding: 5px 10px 6px
-  color: #fff
+  color: white
   text-decoration: none
   font-weight: bold
   -webkit-border-radius: 5px
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3)
-  text-shadow: 0 -1px 1px rgba(0,0,0,0.25)
-  border-bottom: 1px solid rgba(0,0,0,0.25)
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3)
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25)
+  -webkit-transition: background 0.25s
   
+  &:hover
+    background-color: rgb(102, 127, 217)
+
 input.right
   float: right
-  
-  
-// inline label stuff 
-//   @ref: http://www.zurb.com/playground/inline-form-labels
+
+// inline label stuff
+//  @ref: http://www.zurb.com/playground/inline-form-labels
 .field.inline
   input
     position: relative
     display: block
     z-index: 2
-  
-  label 
+    
+  label
     position: relative
     z-index: 1
     display: block
     padding-left: 6px
     opacity: 0.75
     -webkit-transition: opacity 0.15s linear
-  
+    
   label + input
     margin-top: -22px
     background-color: transparent
-  
-  label.focus 
+    
+  label.focus
     opacity: 0.35
     
-  label.has-text 
-    opacity: 0.0
+  label.has-text
+    opacity: 0
     -webkit-transition-duration: 0s
-    
+
 .field.top
   input
     position: relative
@@ -108,22 +108,22 @@ input.right
   
   input
     position: relative
-  
+    
   label
     position: relative
-    
+
 .field.mini
   input, textarea
     width: 90px
-  
+
 .field.small
   input, textarea
     width: 120px
-  
-.field.medium 
+
+.field.medium
   input, textarea
     width: 330px
-  
+
 .field.large
   input, textarea
     width: 570px
