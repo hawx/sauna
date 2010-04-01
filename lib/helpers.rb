@@ -11,4 +11,16 @@ class String
     marked
   end
   
+  # need to make this a lot more robust, it should truncate the slug if
+  #  it gets too long, +other stuff.
+  def slugify
+    self = self.clone
+    self.gsub!(/[']+/, '')
+    self.gsub!(/\W+/, ' ')
+    self.strip!
+    self.downcase!
+    self.gsub!(' ', '-')
+    self
+  end
+  
 end

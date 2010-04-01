@@ -22,22 +22,12 @@ module Models
     
     before(:save) do 
       self.updated_at = DateTime.now
-      self.slug = slugify(self.name)
+      self.slug = self.name.slugify
     end
     
     def initialize( attributes={} )
       self.created_at = Time.now
       self.updated_at = self.created_at
-    end
-    
-    def slugify( string )
-      string = string.clone
-      string.gsub!(/[']+/, '')
-      string.gsub!(/\W+/, ' ')
-      string.strip!
-      string.downcase!
-      string.gsub!(' ', '-')
-      string
     end
     
     def url
