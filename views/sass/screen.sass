@@ -2,38 +2,39 @@
 @import _grid.sass
 @import _settings.sass
 
+a
+  color: $link_color
+  text-decoration: none
+  
+  &:hover
+    color: $link_color_h
+
 strong
   font-weight: bold
 
 em
   font-style: italic
 
-input[type=text], input[type=password], textarea
-  padding: 2px
-  -webkit-border-radius: 2px
-  background: rgb(251, 251, 251)
-  border: 1px solid
-  border-top-color: rgb(0, 0, 0)
-  border-right-color: rgb(100, 100, 100)
-  border-bottom-color: rgb(100, 100, 100)
-  border-left-color: rgb(0, 0, 0)
-
 .content
   p
     margin: 12px 0
+    
   blockquote
     padding-left: 20px
     border-left: 1px solid silver
+    
   ul, ol
     padding-left: 20px
+    
   ul
     list-style: circle
+    
   ol
     list-style: decimal
 
 html
-  font: 14px / 18px #{$sans_ff}
-  background: #{$background_color} url(/images/background.png)
+  font: 14px / 18px $sans_ff
+  background: $background_color url(/images/background.png)
 
 #wrapper
   background: $page_color
@@ -44,16 +45,20 @@ html
   padding: 0 60px
   width: $wrapper_width
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3)
+  +box-shadow(0, 3px, 5px, rgba(0, 0, 0, 0.3))
+  
   > header
     margin: 61px 0 36px
     display: block
     width: $wrapper_width
     position: relative
+    
     h1
       font-weight: normal
+      
       a
         text-decoration: none
+        
     .meta
       font-size: 12px
       color: $text_faint
@@ -62,7 +67,6 @@ html
       top: 6px
 
 @import _form.sass
-
 @import _discussion.sass
 @import _post.sass
 @import _member.sass

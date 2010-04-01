@@ -1,9 +1,11 @@
 $background_color: rgb(68, 68, 68)
-$page_color: rgb(250, 250, 250)
+$page_color: rgb(252, 250, 248)
 
 $text_color: rgb(0, 0, 0)
 $text_faint: rgba(0, 0, 0, 0.5)
-$link_color: rgb(0, 0, 255)
+
+$link_color: rgb(115, 3, 36)
+$link_color_h: rgb(69, 99, 130)
 
 $sans_ff: Helvetica
 $serif_ff: Georgia
@@ -17,5 +19,5 @@ $wrapper_width: 820px
 =box-shadow($h, $v, $blur, $colour)
   -webkit-box-shadow: $h $v $blur $colour
 
-=transition($attr, $time, $type)
+=transition($attr, $time, $type: cubic-bezier(0.25, 0.1, 0.25, 1.0))
   -webkit-transition: $attr $time $type

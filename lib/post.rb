@@ -6,10 +6,10 @@ module Models
     
     property :id,             Serial
     property :discussion_id,  Integer
-    property :title,          String, :required => true
-    property :slug,           String
+    property :title,          String, :required => true, :unique => true
+    property :slug,           String, :unique => true
     
-    property :content,        Text
+    property :content,        Text, :required => true
     
     property :created_at,     DateTime
     property :updated_at,     DateTime

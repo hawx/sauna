@@ -8,6 +8,7 @@ $(document).ready(function(){
         }
       }, 200);
     });*/
+    
      
     $(this).focus(function () {
       $(this).prev("label").addClass("focus");
