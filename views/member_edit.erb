@@ -40,7 +40,15 @@
   
   <p>Image File: <input type="file" name="avatar" id="avatar" /></p>
   
-  <% if current_user.admin? then %>
+  <% if current_user.admin? then %> 
+  <span class="field top">
+    <label for="bandate">Ban End</label>
+    <span class="field inline">
+      <label>DD/MM/YY</label>
+      <input type="text" id="bandate" name="member[bandate]" value="<%= @member.bandate %>"/>
+    </span>
+  </span>
+  
   <span class="field top">
     <label for="access">Access Level</label>
     <input type="text" id="access" name="member[access_level]" value="<%= @member.access_level %>"/>

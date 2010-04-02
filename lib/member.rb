@@ -19,6 +19,9 @@ module Models
     property :join_date,        DateTime
     property :access_level,     Integer, :default  => 0
     
+    property :banned,           Boolean, :default => false
+    property :ban_end,          DateTime
+    
     property :avatar,           Boolean, :default => false
     property :avatar_type,      String
     property :avatar_size,      Integer
@@ -39,14 +42,47 @@ module Models
       self.hashed_password = Member.encrypt(@password, self.salt)
     end
     
+    def bandate=(date)
+      # should make this a little bit more flexible
+      # or just add a datepicker from jQuery UI
+      date = Time.strptime(date, "%d/%m/%y")
+      
+      if self.banned?
+        self.ban_end = date
+      else
+        self.banned = true
+        self.ban_end = date
+      end
+    end
+    
     def self.authenticate(username, password)
+      
       current_user = Member.first(:username => username)
       return nil if current_user.nil?
+      return nil if current_user.banned?
       
       if Member.encrypt(password, current_user.salt) == current_user.hashed_password
         return current_user
       end
       nil
+    end
+    
+    def self.banned?
+      if self.banned
+        if self.ban_end < Time.now
+          # ban has ended so remove ban
+          self.banned = false
+          return false
+        else
+          return true
+        end
+      else
+        return false
+      end
+    end
+    
+    def bandate
+      self.ban_end.strftime("%d/%m/%y")
     end
     
     def url
