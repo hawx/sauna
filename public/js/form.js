@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  
   $(".field.inline label + input").each(function (type) {
     
     if($(this).val() != "") {
@@ -27,4 +27,5 @@ $(document).ready(function(){
     });
     
   });
+	
 });
