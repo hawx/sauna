@@ -64,6 +64,7 @@ class Sauna
     
     pass unless @member = Member.first(:username => params[:m])
     redirect "/member/#{params[:m]}" unless current_user.admin? || current_user.username == params[:m]
+    redirect "/member/#{params[:m]}" if @member.site_admin?
     
     if @member.destroy!
       session[:flash] = "way to go, you deleted a user"
