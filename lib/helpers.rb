@@ -11,14 +11,20 @@ class String
     marked
   end
   
+  def truncate!( length )
+    self.split[0...length].join(" ")
+  end
+  
   #  Need to make this a lot more robust, it should truncate the slug if
   #  it gets too long, + other stuff. Another time maybe?
+  #
+  #  Also requiring the whole of active record seems like overkill?
   def slugify
-    slug = self.clone
     slug.gsub!(/[']+/, '')
     slug.gsub!(/\W+/, ' ')
     slug.strip!
     slug.downcase!
+    slug.truncate!(7)
     slug.gsub!(' ', '-')
     slug
   end
