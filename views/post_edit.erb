@@ -3,13 +3,25 @@
 </header>
 
 <form action="<%= @post.url %>/edit" method="post" id="post" enctype="multipart/form-date"> 
+
   <span class="field inline">
-    <label>Title</label>
-    <input type="text" name="post[title]" value="<%= @post.title %>"/>
+    <label for="title">Title</label>
+    <input type="text" id="title" name="post[title]" value="<%= @post.title %>"/>
   </span>
+  
   <span class="field top">
-    <label>Content</label>
-    <textarea type="text" name="post[content]"><%= @post.content %></textarea>
+    <label for="content">Content</label>
+    <textarea type="text" id="content" name="post[content]"><%= @post.content %></textarea>
   </span>
-  <input type="submit" value="Update post">
+  
+  <span class="field top">
+    <label for="tags">Tags</label>
+    <span class="field inline">
+      <label>tag, tag, tag</label>
+      <input type="text" id="tags" name="tags"/>
+    </span>
+  </span>
+  
+  <input class="right" type="submit" value="Update post">
+  
 </form>

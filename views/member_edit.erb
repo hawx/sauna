@@ -9,8 +9,8 @@
   </span>
   
   <span class="field top">
-    <label for="lname">Last name</label>
-    <input type="text" id="lname" name="member[sname]" value="<%= @member.sname %>"/>
+    <label for="sname">Last name</label>
+    <input type="text" id="sname" name="member[sname]" value="<%= @member.sname %>"/>
   </span>
   
   <span class="field top">
@@ -38,7 +38,10 @@
     <input type="password" id="confirm" name="member[password_confirmation]" />
   </span>
   
-  <p>Image File: <input type="file" name="avatar" id="avatar" /></p>
+  <span class="field top upload">
+    <label for="avatar">Avatar</label>
+    <input type="file" name="avatar" id="avatar" />
+  </span>
   
   <% if current_user.admin? then %> 
   <span class="field top">
@@ -54,5 +57,5 @@
     <input type="text" id="access" name="member[access_level]" value="<%= @member.access_level %>"/>
   </span>
   <% end %>
-  <input type="submit" value="Update">
+  <input class="right" type="submit" value="Update">
 </form>

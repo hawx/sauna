@@ -3,9 +3,11 @@
 </header>
 
 <form action="create" method="post" id="comment" enctype="multipart/form-date">
+
   <span class="field top">
     <label for="content">Content</label>
-    <textarea type="text" name="comment[content]"></textarea>
+    <textarea type="text" if="content" name="comment[content]"></textarea>
   </span>
-  <input type="submit" value="Create comment">
+  <input class="right" type="submit" value="Create comment">
+  
 </form>

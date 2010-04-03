@@ -3,14 +3,17 @@
 </header>
 
 <form action="create" method="post" id="post" enctype="multipart/form-date">
+
   <span class="field inline">
     <label for="title">Title</label>
-    <input type="text" for="title" name="post[title]"/>
+    <input type="text" id="title" name="post[title]"/>
   </span>
+  
   <span class="field top">
     <label for="content">Content</label>
     <textarea type="text" id="content" name="post[content]"></textarea>
   </span>
+  
   <span class="field top">
     <label for="tags">Tags</label>
     <span class="field inline">
@@ -18,5 +21,7 @@
       <input type="text" id="tags" name="tags"/>
     </span>
   </span>
-  <input type="submit" class="right" value="Create post">
+  
+  <input class="right" type="submit" value="Create post">
+  
 </form>

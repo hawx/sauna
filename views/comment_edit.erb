@@ -3,9 +3,11 @@
 </header>
 
 <form action="<%= @comment.url %>/edit" method="post" id="comment" enctype="multipart/form-date">
+
   <span class="field top">
     <label for="content">Content</label>
-    <textarea type="text" name="comment[content]"><%= @comment.content %></textarea>
+    <textarea type="text" id="content" name="comment[content]"><%= @comment.content %></textarea>
   </span>
-  <input type="submit" value="Update comment">
+  <input class="right" type="submit" value="Update comment">
+  
 </form>
