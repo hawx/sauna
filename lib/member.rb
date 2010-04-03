@@ -139,26 +139,7 @@ module Models
     end
     
     def biography
-      if self.bio
-        marked = RedCloth.new( self.bio ).to_html
-        marked.gsub!(/@([a-zA-Z0-9_-]+)/) do |u|
-          if user = Member.first(:username => u[1..u.size])
-            "<a href='/member/#{user.id}'><span class='at'>@</span>#{user.username}</a>"
-          else
-            u
-          end
-        end
-        marked.gsub!(/#([a-zA-Z0-9_-]+)/) do |t|
-          if tag = Tag.first(:name => t[1..t.size])
-            "<a href='/tag/#{tag.id}'><span class='hash'>#</span>#{tag.name}</a>"
-          else
-            t
-          end
-        end
-        marked
-      else
-        ''
-      end
+      self.bio.markup
     end
     
     protected
