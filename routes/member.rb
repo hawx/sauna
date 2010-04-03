@@ -17,7 +17,7 @@ class Sauna
   
     @member = @sauna.members.new
     @member.attributes = params[:member]
-    @member.upload_avatar(params[:avatar])            
+    @member.upload_avatar(params[:avatar]) if params[:avatar]     
     @member.save
     
     redirect "/member"
@@ -49,9 +49,7 @@ class Sauna
         user_attributes.delete("password_confirmation")
     end
     @member.attributes = user_attributes
-    if params[:avatar]
-      @member.upload_avatar(params[:avatar])
-    end
+    @member.upload_avatar(params[:avatar]) if params[:avatar]
     if @member.save
       redirect "/member/#{params[:id]}"
     else
