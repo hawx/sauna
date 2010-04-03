@@ -6,7 +6,7 @@ require 'yaml'
 
 # other gems
 require 'sass'
-require 'RedCloth'
+require 'rdiscount'
 require 'sqlite3'
 require 'dm-core'
 require 'dm-timestamps'

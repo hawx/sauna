@@ -1,6 +1,6 @@
 class String
   def markup
-    marked = RedCloth.new( self ).to_html
+    marked = RDiscount.new( self ).to_html
     marked.gsub!(/@([a-zA-Z0-9_-]+)/) do |u|
       if user = Member.first(:username => u[1..u.size])
         "<a href='/member/#{user.id}'><span class='at'>@</span>#{user.username}</a>"
@@ -17,9 +17,8 @@ class String
   
   #  Need to make this a lot more robust, it should truncate the slug if
   #  it gets too long, + other stuff. Another time maybe?
-  #
-  #  Also requiring the whole of active record seems like overkill?
   def slugify
+    slug = self
     slug.gsub!(/[']+/, '')
     slug.gsub!(/\W+/, ' ')
     slug.strip!
