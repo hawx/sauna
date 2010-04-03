@@ -19,7 +19,6 @@ module Models
     property :join_date,        DateTime
     property :access_level,     Integer, :default  => 0
     
-    property :banned,           Boolean, :default => false
     property :ban_end,          DateTime
     
     property :avatar,           Boolean, :default => false
@@ -42,7 +41,7 @@ module Models
       self.hashed_password = Member.encrypt(@password, self.salt)
     end
     
-    def bandate=(date)
+    def ban=(date)
       # should make this a little bit more flexible
       # or just add a datepicker from jQuery UI
       date = Time.strptime(date, "%d/%m/%y")
@@ -50,7 +49,6 @@ module Models
       if self.banned?
         self.ban_end = date
       else
-        self.banned = true
         self.ban_end = date
       end
     end
@@ -68,20 +66,15 @@ module Models
     end
     
     def self.banned?
-      if self.banned
-        if self.ban_end < Time.now
-          # ban has ended so remove ban
-          self.banned = false
-          return false
-        else
-          return true
-        end
-      else
+      return false unless self.ban_end
+      if self.ban_end < Time.now
         return false
+      else
+        return true
       end
     end
     
-    def bandate
+    def ban_end?
       self.ban_end.strftime("%d/%m/%y")
     end
     
@@ -123,7 +116,10 @@ module Models
       self.avatar = true
       self.avatar_type = file[:type]
       self.avatar_size = File.size(file[:tempfile])
-      path = File.join(Dir.pwd, "/public/images/avatars", image_name(self.username, file[:type]))
+      path = File.join(Dir.pwd, 
+                       "/public/images/avatars", 
+                       image_name(self.username, 
+                       file[:type]))
       
       File.open(path, "wb") do |f|
         f.write(file[:tempfile].read)
@@ -134,12 +130,16 @@ module Models
       if self.avatar
         "/images/avatars/#{image_name(self.username, self.avatar_type)}"
       else
-        nil
+        "/images/avatar-missing.png"
       end
     end
     
     def biography
-      self.bio.markup
+      if self.bio
+        self.bio.markup 
+      else
+        ''
+      end
     end
     
     protected
