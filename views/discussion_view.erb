@@ -6,6 +6,7 @@
           <%= @discussion.name %>
         </a>
       </h1>
+      <div class="meta"><%= @discussion.posts.size %> Posts</div>
     </header>
     
     <ul class="post-list">
@@ -24,9 +25,7 @@
         </div>
       </li>
     <% end %>
+    <a href="<%= @discussion.url %>/post/new" class="new-post">New Post</a>
     </ul>
-    <%= @discussion.posts.all.size %> posts.
-    
-    <a href="<%= @discussion.url %>/post/new">New Post</a>
   </li>
-</div>
+</ul>

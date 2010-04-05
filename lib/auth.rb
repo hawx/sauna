@@ -5,8 +5,8 @@ module Models
       true
     end
     
-    def permission_level
-      0
+    def access_level
+      -1
     end
     
     def method_missing(m, *args)

@@ -8,8 +8,11 @@
     <span class="rank"><%= @post.creator.rank %></span><br/>
     
     <time><%= @post.created_at_short_string %></time>
-    <a href="<%= @post.url %>/edit" class="edit">edit</a>
-    <a href="<%= @post.url %>/delete" class="delete">delete</a>
+    
+    <% if current_user.access_level > 1 || current_user == @post.creator %>
+      <a href="<%= @post.url %>/edit" class="edit">edit</a>
+      <a href="<%= @post.url %>/delete" class="delete">delete</a>
+    <% end %>
   </div>
   <div class="content"><%= @post.m_content %></div>
   
@@ -22,12 +25,19 @@
         <span class="rank"><%= comment.creator.rank %></span><br/>
         
         <time><%= comment.created_at_short_string %></time>
-        <a href="<%= comment.url %>/edit" class="edit">edit</a>
-        <a href="<%= comment.url %>/delete" class="delete">delete</a>
+        
+        <% if current_user.access_level > 1 || current_user == comment.creator %>
+          <a href="<%= comment.url %>/edit" class="edit">edit</a>
+          <a href="<%= comment.url %>/delete" class="delete">delete</a>
+        <% end %>
       </div>
       <div class="content"><%= comment.m_content %></div>
     </li>
   <% end %>
+  
+    <li class="new-comment">
+      <div class="content"><a href="<%= @post.url %>/new">Add comment</a></div>
+    </li>
+  
   </ul>
 </div>
-<a href="<%= @post.url %>/new">Add comment</a>

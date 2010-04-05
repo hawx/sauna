@@ -4,13 +4,14 @@
   margin-bottom: 54px
   
   > li
+    margin-bottom: 48px
+  
     > header
       width: $wrapper_width
       display: block
-      background: rgb(240, 240, 235)
+      border-bottom: 1px solid rgba(0, 0, 0, .8)
       position: relative
       padding: 5px 10px
-      +border-radius(3px)
       
       h1
         font-size: 16px
@@ -20,7 +21,6 @@
         top: 5px
         right: 10px
         font-size: 12px
-        font-family: $serif_ff
         
     > .post-list
       list-style: none
@@ -30,7 +30,11 @@
         height: 30px
         width: $wrapper_width + 18
         padding: 18px 0
-        border-bottom: 1px dotted rgb(50, 50, 50)
+        border-top: 1px solid rgb(255, 255, 255)
+        border-bottom: 1px solid rgba(0, 0, 0, .2)
+        
+        &:hover
+          background: rgba(0, 0, 0, .005)
         
         header
           position: absolute
@@ -57,7 +61,12 @@
           color: $text_faint
           font-size: 12px
           
-      .show-all
+      .show-all, .new-post
         display: block
         width: 100%
-        padding: 5px
+        padding: 5px 0px 5px 18px
+        border-top: 1px solid rgb(255, 255, 255)
+        border-bottom: 1px solid rgba(0, 0, 0, .2)
+        
+        &:hover
+          background: rgba(0, 0, 0, .005)

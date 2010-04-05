@@ -1,10 +1,13 @@
 <div class="member-view">
   <header>
     <a href="<%= @member.avatar_url %>"><img class="avatar" src="<%= @member.avatar_url %>"/></a>
-    <h1><%= @member.username %> <% if @member.banned? %>(Banned)<% end %></h1>
-    <span class="rank"><%= @member.rank %></span>
-    <a href="<%= @member.url %>/edit" class="edit">edit</a>
-    <a href="<%= @member.url %>/delete" class="delete">delete</a>
+    <h1><%= @member.username %></h1>
+    <span class="rank"><%= @member.rank %> <% if @member.banned? %>(banned)<% end %></span>
+    
+    <% if current_user.access_level > 1 || current_user == @member %>
+      <a href="<%= @member.url %>/edit" class="edit">edit</a>
+      <a href="<%= @member.url %>/delete" class="delete">delete</a>
+    <% end %>
   </header>
   <ul>
     <li><span class="label">Name</span> <span><%= @member.fname %> <%= @member.sname %></span></li>

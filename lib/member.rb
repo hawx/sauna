@@ -104,10 +104,11 @@ module Models
     
     def rank
       case self.access_level
-        when 0 then "Member"
-        when 1 then "Senior Member"
-        when 2 then "Moderator"
-        when 3 then "Admin"
+        when -1 then "Guest"
+        when 0  then "Member"
+        when 1  then "Senior Member"
+        when 2  then "Moderator"
+        when 3  then "Admin"
         else "Guest"
       end
     end
