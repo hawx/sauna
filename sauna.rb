@@ -21,7 +21,7 @@ require 'lib/auth'
 require 'lib/helpers'
 
 require 'lib/sauna'
-require 'lib/member' # <= lazy symbol issue is caused by this
+require 'lib/member'
 
 require 'lib/discussion'
 require 'lib/post'
@@ -76,6 +76,7 @@ class Sauna < Sinatra::Base
     p @member
     puts "Admin created..."
     
+    session[:notice] = "You have created a new Sauna!"
     redirect '/'
   end
   
@@ -86,26 +87,49 @@ class Sauna < Sinatra::Base
   end
   
   post '/login' do
-    if user = Member.authenticate(params[:username], params[:password])
-      session[:user] = user.id
+    if Member.first(:username => params[:username]).logged_in
+      session[:notice] = "You are already logged in, log out and try again"
       if session[:return_to]
         redirect_url = session[:return_to]
         session[:return_to] = false
         redirect redirect_url
       else
-        session[:notice] = "Logged in as #{user.username}"
+        redirect '/'
+      end
+    end
+    
+    if user = Member.authenticate(params[:username], params[:password])
+      session[:user] = user.id
+      session[:notice] = "Logged in as #{user.username}"
+      if session[:return_to]
+        redirect_url = session[:return_to]
+        session[:return_to] = false
+        redirect redirect_url
+      else
         redirect '/'
       end
     else
-      session[:notice] = "Log in falied"
+      session[:notice] = "Log in failed"
       redirect '/login'
     end
   end
   
   get '/logout' do
+    current_user.logged_in = false
+    current_user.save
+    
     session[:user] = nil
     session[:notice] = "Logged out"
     redirect '/'
+  end
+  
+  
+  before do
+    # this stops the same message from coming up twice or more
+    if session[:notice] == session[:oldnotice]
+      session[:notice] = ""
+    end
+    session[:oldnotice] = session[:notice]
   end
   
 end

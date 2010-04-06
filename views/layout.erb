@@ -11,9 +11,11 @@
   
   <body> 
     <div id="wrapper">
-      <!--<div id="flash">
-        <span><%= session[:notice] %></span>
-      </div>-->
+      <% if session[:notice] != "" %>
+        <div id="flash">
+          <span><%= session[:notice] %></span>
+        </div>
+      <% end %>
       
       <header>
         <h1><a href="/"><%= @sauna.name %></a></h1>

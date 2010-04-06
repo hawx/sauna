@@ -18,6 +18,7 @@ class Sauna
     @post.tags = params[:tags]
     @post.save
     
+    session[:notice] = "You created a new post"
     redirect "/#{params[:id]}"
   end
   
@@ -47,9 +48,10 @@ class Sauna
     @post.attributes = params[:post]
     @post.updated = session[:user]
     if @post.save
+      session[:notice] = "You edited a post"
       redirect "/#{params[:d]}/#{params[:p]}"
     else
-      session[:notice] = 'whoops, looks like there were some problems with your updates'
+      session[:notice] = 'Edit of post failed'
       redirect "/#{params[:d]}/#{params[:p]}/edit"
     end
   end
@@ -60,9 +62,9 @@ class Sauna
     redirect "/#{params[:d]}/post/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @post.creator.id.to_s
     
     if @post.destroy!
-      session[:flash] = "way to go, you deleted a post"
+      session[:flash] = "You deleted a post"
     else
-      session[:flash] = "deletion failed, for whatever reason"
+      session[:flash] = "Deletion of post failed"
     end
     redirect '/'
   end
@@ -120,9 +122,9 @@ class Sauna
     redirect "/#{params[:d]}/post/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @comment.creator.id.to_s
     
     if @comment.destroy!
-      session[:flash] = "way to go, you deleted a comment"
+      session[:notice] = "way to go, you deleted a comment"
     else
-      session[:flash] = "deletion failed, for whatever reason"
+      session[:notice] = "deletion failed, for whatever reason"
     end
     redirect "/#{params[:d]}/post/#{params[:p]}"
   end

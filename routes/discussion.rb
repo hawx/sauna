@@ -25,6 +25,7 @@ class Sauna
     
     @discussion.save
     
+    session[:notice] = "New discussion created"
     redirect "/discussion/"
   end
   
@@ -49,9 +50,9 @@ class Sauna
     redirect "/#{params[:d]}" unless current_user.admin? || current_user.id.to_s == @discussion.creator.id.to_s
     
     if @discussion.destroy!
-      session[:flash] = "way to go, you deleted a post"
+      session[:notice] = "You deleted a discussion"
     else
-      session[:flash] = "deletion failed, for whatever reason"
+      session[:notice] = "Deletion of discussion failed"
     end
     redirect '/'
   end

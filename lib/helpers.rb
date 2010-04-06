@@ -18,7 +18,7 @@ class String
   #  Need to make this a lot more robust, it should truncate the slug if
   #  it gets too long, + other stuff. Another time maybe?
   def slugify
-    slug = self
+    slug = self.clone
     slug.gsub!(/[']+/, '')
     slug.gsub!(/\W+/, ' ')
     slug.strip!

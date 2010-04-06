@@ -20,6 +20,7 @@ class Sauna
     @member.upload_avatar(params[:avatar]) if params[:avatar]     
     @member.save
     
+    session[:notice] = "New member created"
     redirect "/member"
   end
   
@@ -47,6 +48,7 @@ class Sauna
     mail.delivery_method :sendmail
     mail.deliver!
     
+    session[:notice] = "Email sent"
     redirect "/member/#{params[:m]}"
   end
 
@@ -71,9 +73,10 @@ class Sauna
     @member.attributes = user_attributes
     @member.upload_avatar(params[:avatar]) if params[:avatar]
     if @member.save
+      session[:notice] = "You edited a member"
       redirect "/member/#{params[:id]}"
     else
-      session[:notice] = 'whoops, looks like there were some problems with your updates'
+      session[:notice] = 'Edit failed'
       redirect "/member/edit/#{params[:id]}/"
     end
   end
@@ -87,9 +90,9 @@ class Sauna
     redirect "/member/#{params[:m]}" if @member.site_admin?
     
     if @member.destroy!
-      session[:notice] = "way to go, you deleted a user"
+      session[:notice] = "You deleted a member"
     else
-      session[:notice] = "deletion failed, for whatever reason"
+      session[:notice] = "Deletion of a member failed"
     end
     redirect '/'
   end

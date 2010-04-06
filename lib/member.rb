@@ -21,6 +21,7 @@ module Models
     property :access_level,     Integer, :default  => 0
     
     property :ban_end,          DateTime
+    property :logged_in,        Boolean
     
     property :avatar,           Boolean, :default => false
     property :avatar_type,      String
@@ -61,6 +62,8 @@ module Models
       return nil if current_user.banned?
       
       if Member.encrypt(password, current_user.salt) == current_user.hashed_password
+        current_user.logged_in = true
+        current_user.save
         return current_user
       end
       nil
