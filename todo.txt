@@ -3,3 +3,7 @@
 - Make it so that going to an id url eg. /post/:id or /discussion/:id or /tag/:id redirects to the name version and also redirects correctly so that posts end up in the correct discussion.
 - Allow members to be banned for a certain period of time.
 - Add email system using pony? So members don't have to have their email address shown.
+- Make a new model called 'Mention' so that when a member is mentioned in a post or comment they are notified, maybe by email but at have a list on their member page.
+
+# NOTE
+It seems either datamapper or sqlite3 is broken as it keeps giving issues, best plan is to create a new branch, find problem then merge. But it is quite probable that the problem isn't with me, but the __gems__.

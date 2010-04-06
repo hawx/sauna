@@ -7,25 +7,34 @@ require 'yaml'
 # other gems
 require 'sass'
 require 'rdiscount'
+
+#require 'pony'
+
 require 'sqlite3'
 require 'dm-core'
 require 'dm-timestamps'
 require 'digest/sha1'
 
 # get rest of sauna
+
 require 'lib/auth'
 require 'lib/helpers'
+
 require 'lib/sauna'
+require 'lib/member' # <= lazy symbol issue is caused by this
+
 require 'lib/discussion'
 require 'lib/post'
 require 'lib/comment'
+
 require 'lib/topic'
-require 'lib/member'
 require 'lib/tag'
 
 
 class Sauna < Sinatra::Base
+
   include Models
+  use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
   
   set :root,   File.dirname(__FILE__)
   set :public, Proc.new { File.join(root, "public") }
@@ -35,9 +44,6 @@ class Sauna < Sinatra::Base
     DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/forum.db")
     DataMapper.auto_upgrade!
   end
-  
-  use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
-   
   
   
   get '/' do
@@ -87,21 +93,25 @@ class Sauna < Sinatra::Base
         session[:return_to] = false
         redirect redirect_url
       else
+        session[:notice] = "Logged in as #{user.username}"
         redirect '/'
       end
     else
+      session[:notice] = "Log in falied"
       redirect '/login'
     end
   end
   
   get '/logout' do
     session[:user] = nil
+    session[:notice] = "Logged out"
     redirect '/'
   end
   
 end
-
+=begin
 load 'routes/discussion.rb'
 load 'routes/post.rb'
 load 'routes/member.rb'
 load 'routes/tag.rb'
+=end

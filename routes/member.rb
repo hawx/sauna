@@ -29,13 +29,29 @@ class Sauna
     @sauna = Sauna.first
     erb :member_view
   end
+
+  get '/member/:m/mail/?' do
+    # pony doesn't work so may have to find a way round that
+    # in the mean time
+    redirect "/member/#{params[:m]}"
   
+    pass unless @member = Member.first(:username => params[:m])
+    @sauna = Sauna.first
+    erb :member_mail, :layout => :form
+  end
+  post '/member/:m/mail/?' do
+    @member = Member.first(:username => params[:m])
+    Pony.mail(:to => @member.email, :from => params[:from], :subject => params[:subject], :body => params[:content])
+    
+    redirect "/member/#{params[:m]}"
+  end
+
   # edit members
   get '/member/:m/edit?' do
     login_required
     
     pass unless @member = Member.first(:username => params[:m])
-    edirect "/member/#{params[:m]}" unless current_user.admin? || current_user.username == params[:m]
+    redirect "/member/#{params[:m]}" unless current_user.admin? || current_user.username == params[:m]
     
     @sauna = Sauna.first
 
@@ -67,9 +83,9 @@ class Sauna
     redirect "/member/#{params[:m]}" if @member.site_admin?
     
     if @member.destroy!
-      session[:flash] = "way to go, you deleted a user"
+      session[:notice] = "way to go, you deleted a user"
     else
-      session[:flash] = "deletion failed, for whatever reason"
+      session[:notice] = "deletion failed, for whatever reason"
     end
     redirect '/'
   end

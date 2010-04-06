@@ -1,6 +1,5 @@
 require 'sauna' 
-
 require 'rack/generator'
-use Rack::SASS
 
+use Rack::SASS
 run Sauna.new

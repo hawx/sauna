@@ -4,6 +4,7 @@ module Models
     
     include DataMapper::Resource
     
+
     property :id,               Serial
     property :email,            String,  :unique   => true
     property :fname,            String
@@ -28,7 +29,7 @@ module Models
     belongs_to :sauna
     
     attr_accessor :password, :password_confirmation
-    
+  
     
     def initialize( attributes={} )
       self.join_date = Time.now
@@ -170,6 +171,6 @@ module Models
     def method_missing(m, *args)
       return false
     end
-    
+
   end
 end

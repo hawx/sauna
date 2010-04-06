@@ -1,0 +1,23 @@
+<header>
+  <h1>Email <%= @member.username %></h1>
+</header>
+
+<form action="<%= @member.url %>/mail" method="post" id="member" enctype="multipart/form-date">
+  
+  <span class="field inline">
+    <label for="from">From</label>
+    <input type="text" id="from" name="from" />
+  </span>
+  
+  <span class="field inline">
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" name="subject" />
+  </span>
+  
+  <span class="field top">
+    <label for="content">Message</label>
+    <textarea type="text" id="content" name="content"></textarea>
+  </span>
+  
+  <input class="right" type="submit" value="Send">
+</form>
