@@ -15,9 +15,15 @@ $wrapper_width: 820px
 
 =border-radius($radius)
   -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  border-radius: $radius
 
 =box-shadow($h, $v, $blur, $colour)
   -webkit-box-shadow: $h $v $blur $colour
+  -moz-box-shadow: $h $v $blur $colour
+  box-shadow: $h $v $blur $colour
 
 =transition($attr, $time, $type: cubic-bezier(0.25, 0.1, 0.25, 1.0))
   -webkit-transition: $attr $time $type
+  -mox-transition: $attr $time $type
+  -o-transition: $attr $time $type
