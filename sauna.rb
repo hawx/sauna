@@ -109,9 +109,8 @@ class Sauna < Sinatra::Base
   end
   
 end
-=begin
+
 load 'routes/discussion.rb'
 load 'routes/post.rb'
 load 'routes/member.rb'
 load 'routes/tag.rb'
-=end
