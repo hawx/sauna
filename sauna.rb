@@ -8,7 +8,7 @@ require 'yaml'
 require 'sass'
 require 'rdiscount'
 
-#require 'pony'
+require 'mail'
 
 require 'sqlite3'
 require 'dm-core'

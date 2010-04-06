@@ -30,18 +30,22 @@ class Sauna
     erb :member_view
   end
 
-  get '/member/:m/mail/?' do
-    # pony doesn't work so may have to find a way round that
-    # in the mean time
-    redirect "/member/#{params[:m]}"
-  
+  get '/member/:m/mail/?' do 
     pass unless @member = Member.first(:username => params[:m])
     @sauna = Sauna.first
     erb :member_mail, :layout => :form
   end
   post '/member/:m/mail/?' do
     @member = Member.first(:username => params[:m])
-    Pony.mail(:to => @member.email, :from => params[:from], :subject => params[:subject], :body => params[:content])
+    
+    mail = Mail.new
+    mail.from = params[:from]
+    mail.to = @member.email
+    mail.subject = params[:subject]
+    mail.body = params[:content]
+    
+    mail.delivery_method :sendmail
+    mail.deliver!
     
     redirect "/member/#{params[:m]}"
   end
