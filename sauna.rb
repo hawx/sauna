@@ -87,16 +87,16 @@ class Sauna < Sinatra::Base
   end
   
   post '/login' do
-    if Member.first(:username => params[:username]).logged_in
-      session[:notice] = "You are already logged in, log out and try again"
-      if session[:return_to]
-        redirect_url = session[:return_to]
-        session[:return_to] = false
-        redirect redirect_url
-      else
-        redirect '/'
-      end
-    end
+    #if Member.first(:username => params[:username]).logged_in
+    #  session[:notice] = "You are already logged in, log out and try again"
+    #  if session[:return_to]
+    #    redirect_url = session[:return_to]
+    #    session[:return_to] = false
+    #    redirect redirect_url
+    #  else
+    #    redirect '/'
+    #  end
+    #end
     
     if user = Member.authenticate(params[:username], params[:password])
       session[:user] = user.id
@@ -120,15 +120,6 @@ class Sauna < Sinatra::Base
     
     session[:user] = nil
     session[:notice] = "Logged out"
-    redirect '/'
-  end
-  
-  get '/logout-all/?' do
-    @members = Member.all
-    @members.each do |member|
-      member.logged_in = false
-      member.save
-    end
     redirect '/'
   end
   
