@@ -1,4 +1,4 @@
-sass
+sass --source gems.github.com
 rdiscount
 mail
 sqlite3
