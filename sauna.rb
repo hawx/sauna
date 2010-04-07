@@ -6,7 +6,6 @@ require 'yaml'
 require 'digest/sha1'
 
 # other gems
-require 'sass'
 require 'rdiscount'
 
 if RUBY_VERSION >= "1.9"
