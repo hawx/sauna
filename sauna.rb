@@ -33,109 +33,109 @@ require 'lib/comment'
 require 'lib/topic'
 require 'lib/tag'
 
-
-class Sauna < Sinatra::Base
-
-  include Models
-  use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
+module Sauna
+  class App < Sinatra::Base
   
-  set :root,   File.dirname(__FILE__)
-  set :public, Proc.new { File.join(root, "public") }
-  set :views,  Proc.new { File.join(root, "views") }
-  
-  configure :development do 
-    DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/forum.db")
-    DataMapper.auto_upgrade!
-  end
-  
-  
-  get '/' do 
-    if Sauna.first.nil?
-      @sauna = Sauna.new
-      @sauna.name = "Setup"
-      @title = "Setup"
-      erb :setup, :layout => :form
-    else
-      @sauna = Sauna.first
-      @title = @sauna.name
-      erb :index
+    include Models
+    use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
+    
+    set :root,   File.dirname(__FILE__)
+    set :public, Proc.new { File.join(root, "public") }
+    set :views,  Proc.new { File.join(root, "views") }
+    
+    configure :development do 
+      DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/forum.db")
+      DataMapper.auto_upgrade!
     end
-  end
-  
-  post '/setup' do
-    @sauna = Sauna.new
-    @sauna.attributes = params[:sauna]
-    @sauna.save
     
-    puts "New Sauna created..."
-    p Sauna.first
-  
-    @sauna = Sauna.first
-    @member = @sauna.members.new
-    @member.attributes = params[:member]
-    @member.access_level = 3
-                         
-    @member.save
-    p @member
-    puts "Admin created..."
     
-    session[:notice] = "You have created a new Sauna!"
-    redirect '/'
-  end
-  
-  get '/login' do
-    @sauna = Sauna.first
-    @title = "Login"
-    erb :login, :layout => :form
-  end
-  
-  post '/login' do
-    #if Member.first(:username => params[:username]).logged_in
-    #  session[:notice] = "You are already logged in, log out and try again"
-    #  if session[:return_to]
-    #    redirect_url = session[:return_to]
-    #    session[:return_to] = false
-    #    redirect redirect_url
-    #  else
-    #    redirect '/'
-    #  end
-    #end
-    
-    if user = Member.authenticate(params[:username], params[:password])
-      session[:user] = user.id
-      session[:notice] = "Logged in as #{user.username}"
-      if session[:return_to]
-        redirect_url = session[:return_to]
-        session[:return_to] = false
-        redirect redirect_url
+    get '/' do 
+      if Sauna.first.nil?
+        @sauna = Sauna.new
+        @sauna.name = "Setup"
+        @title = "Setup"
+        erb :setup, :layout => :form
       else
-        redirect '/'
+        @sauna = Sauna.first
+        @title = @sauna.name
+        erb :index
       end
-    else
-      session[:notice] = "Log in failed"
-      redirect '/login'
     end
-  end
-  
-  get '/logout' do
-    current_user.logged_in = false
-    current_user.save
     
-    session[:user] = nil
-    session[:notice] = "Logged out"
-    redirect '/'
-  end
-  
-  before do
-    # this stops the same message from coming up twice or more
-    if session[:notice] == session[:oldnotice]
-      session[:notice] = ""
+    post '/setup' do
+      @sauna = Sauna.new
+      @sauna.attributes = params[:sauna]
+      @sauna.save
+      
+      puts "New Sauna created..."
+      p Sauna.first
+    
+      @sauna = Sauna.first
+      @member = @sauna.members.new
+      @member.attributes = params[:member]
+      @member.access_level = 3
+                           
+      @member.save
+      p @member
+      puts "Admin created..."
+      
+      session[:notice] = "You have created a new Sauna!"
+      redirect '/'
     end
-    session[:oldnotice] = session[:notice]
+    
+    get '/login' do
+      @sauna = Sauna.first
+      @title = "Login"
+      erb :login, :layout => :form
+    end
+    
+    post '/login' do
+      #if Member.first(:username => params[:username]).logged_in
+      #  session[:notice] = "You are already logged in, log out and try again"
+      #  if session[:return_to]
+      #    redirect_url = session[:return_to]
+      #    session[:return_to] = false
+      #    redirect redirect_url
+      #  else
+      #    redirect '/'
+      #  end
+      #end
+      
+      if user = Member.authenticate(params[:username], params[:password])
+        session[:user] = user.id
+        session[:notice] = "Logged in as #{user.username}"
+        if session[:return_to]
+          redirect_url = session[:return_to]
+          session[:return_to] = false
+          redirect redirect_url
+        else
+          redirect '/'
+        end
+      else
+        session[:notice] = "Log in failed"
+        redirect '/login'
+      end
+    end
+    
+    get '/logout' do
+      current_user.logged_in = false
+      current_user.save
+      
+      session[:user] = nil
+      session[:notice] = "Logged out"
+      redirect '/'
+    end
+    
+    before do
+      # this stops the same message from coming up twice or more
+      if session[:notice] == session[:oldnotice]
+        session[:notice] = ""
+      end
+      session[:oldnotice] = session[:notice]
+    end
+    
   end
-  
 end
-
 load 'routes/discussion.rb'
 load 'routes/post.rb'
 load 'routes/member.rb'
