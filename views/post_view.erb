@@ -1,6 +1,6 @@
 <div class="post-view">
   <header>
-    <h1><a href="<%= @discussion.url %>"><%= @discussion.name %></a>: <%= @post.title %></h1>
+    <h1><a href="<%= @discussion.url %>"><%= @discussion.name %></a>: <%= @post.title %>  <span class="tags"><%= '#' + @post.tag_list.join(' #') %></span></h1>
   </header>
   <div class="meta">
     <img class="avatar" src="<%= @post.creator.avatar_url %>"/>

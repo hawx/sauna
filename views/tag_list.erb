@@ -1,7 +1,36 @@
-<ul>
-  <% @tags.each do |tag| %>
+<ul class="tag-list">
+  <% @tags.each do |tag| %><% if tag.posts.all.size > 0 %>
     <li>
-      <a href="/tag/<%= tag.id %>"><%= tag.name %></a>
+      <header>
+        <h1>
+          <a href="<%= tag.url %>">
+            <%= tag.name %>
+          </a>    
+        </h1>
+        <div class="meta"><%= tag.posts.size %> Posts</div>
+      </header>
+      
+      <ul class="post-list">
+      <% tag.posts.all.each do |post| %>
+        <li>
+          <header>
+            <h1><a href="<%= post.url %>"><%= post.title %></a></h1>
+            <div class="meta">
+              Started by <a href="<%= post.creator.url %>"><%= post.creator.username %></a>
+              in 
+              <a href="<%= post.parent.url %>"><%= post.parent.name %></a>
+            </div>
+          </header>
+          <div class="post-count"><%= post.comments.size %></div>
+          <div class="recent-post-info">
+            <time><a href="#"><%= post.updated_at_short_string %></a></time><br/>
+            by <a href="<%= post.updater.url %>"><%= post.updater.username %></a>
+          </div>
+        </li>
+        
+      <% end %>
+      <a href="<%= tag.url %>" class="show-all">Show all...</a>
+      </ul>
     </li>
-  <% end %>
+  <% end %><% end %>
 </ul>

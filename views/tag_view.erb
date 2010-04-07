@@ -1,10 +1,28 @@
-<header>
-  <h1><%= @tag.name %></h1>
-</header>
-<ul class="post-list">
-  <% @posts.each do |post| %>
-  <li>
-    <a href="/post/<%= post.id %>"><%= post.title %></a>
-  </li>
-  <% end %>
-</ul>
+<div class="tag-view">
+  <header>
+    <h1>
+      <a href="<%= @tag.url %>">
+        <%= @tag.name %>
+      </a>  
+    </h1>
+  </header>
+  <ul class="post-list">
+    <% @posts.each do |post| %>
+    <li>
+      <header>
+        <h1><a href="<%= post.url %>"><%= post.title %></a></h1>
+        <div class="meta">
+          Started by <a href="<%= post.creator.url %>"><%= post.creator.username %></a>
+          in 
+          <% post.tags.each_with_index do |tag, i| %><% if i > 0 then %>, <% end %><a href="<%= tag.url %>"><%= tag.name %></a><% end %>
+        </div>
+      </header>
+      <div class="post-count"><%= post.comments.size %></div>
+      <div class="recent-post-info">
+        <time><a href="#"><%= post.updated_at_short_string %></a></time><br/>
+        by <a href="<%= post.updater.url %>"><%= post.updater.username %></a>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>

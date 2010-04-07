@@ -46,7 +46,7 @@ class Sauna < Sinatra::Base
   end
   
   
-  get '/' do
+  get '/' do 
     if Sauna.first.nil?
       @sauna = Sauna.new
       @sauna.name = "Setup"
@@ -123,6 +123,14 @@ class Sauna < Sinatra::Base
     redirect '/'
   end
   
+  get '/logout-all/?' do
+    @members = Member.all
+    @members.each do |member|
+      member.logged_in = false
+      member.save
+    end
+    redirect '/'
+  end
   
   before do
     # this stops the same message from coming up twice or more

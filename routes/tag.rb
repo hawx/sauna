@@ -7,11 +7,11 @@ class Sauna
     erb :tag_list
   end
   
-  get '/tag/:id/?' do
+  get '/tag/:t/?' do
     # display list of posts for tag
     @sauna = Sauna.first
-    @tag = Tag.first(:id => params[:id])
-    @tagging = Tagging.all.tag.all(:id => params[:id])
+    @tag = Tag.first(:name => params[:t])
+    @tagging = Tagging.all.tag.all(:name => params[:t])
     @posts = @tagging.posts.all
     
     erb :tag_view

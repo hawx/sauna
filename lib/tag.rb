@@ -9,6 +9,10 @@ module Models
     has n, :taggings
     has n, :posts,    :through => :taggings
     
+    def url
+      "/tag/#{self.name}"
+    end
+    
   end
   
   class Tagging

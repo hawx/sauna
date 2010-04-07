@@ -18,7 +18,7 @@
     <label for="tags">Tags</label>
     <span class="field inline">
       <label>tag, tag, tag</label>
-      <input type="text" id="tags" name="tags"/>
+      <input type="text" id="tags" name="tags" value="<%= @post.tag_list.join(', ') %>"/>
     </span>
   </span>
   
