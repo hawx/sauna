@@ -1,6 +1,7 @@
 haml
 rdiscount
 mail
+pony
 sqlite3
 dm-core
 dm-timestamps

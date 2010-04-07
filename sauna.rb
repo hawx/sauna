@@ -3,17 +3,21 @@ require 'sinatra/base'
 # standard gems
 require 'time'
 require 'yaml'
+require 'digest/sha1'
 
 # other gems
 require 'sass'
 require 'rdiscount'
 
-require 'mail'
+if RUBY_VERSION >= "1.9"
+  require 'mail'
+else
+  require 'pony'
+end
 
 require 'sqlite3'
 require 'dm-core'
 require 'dm-timestamps'
-require 'digest/sha1'
 
 # get rest of sauna
 

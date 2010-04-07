@@ -39,15 +39,18 @@ class Sauna
   post '/member/:m/mail/?' do
     @member = Member.first(:username => params[:m])
     
-    mail = Mail.new
-    mail.from = params[:from]
-    mail.to = @member.email
-    mail.subject = params[:subject]
-    mail.body = params[:content]
-    
-    mail.delivery_method :sendmail
-    mail.deliver!
-    
+    if RUBY_VERSION > "1.9"
+      mail = Mail.new
+      mail.from = params[:from]
+      mail.to = @member.email
+      mail.subject = params[:subject]
+      mail.body = params[:content]
+      
+      mail.delivery_method :sendmail
+      mail.deliver!
+    else
+      Pony.mail(:to => @member.email, :from => params[:from], :subject => params[:subject], :body => params[:content])
+    end
     session[:notice] = "Email sent"
     redirect "/member/#{params[:m]}"
   end
