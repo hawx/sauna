@@ -1,4 +1,4 @@
-haml
+haml --version '>= 3.0.0.beta.1'
 rdiscount
 mail
 pony
