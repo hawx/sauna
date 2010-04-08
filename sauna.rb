@@ -7,6 +7,7 @@ require 'digest/sha1'
 
 # other gems
 require 'rdiscount'
+require 'sass'
 
 require 'mail' if RUBY_VERSION >= "1.9"
 
@@ -125,6 +126,11 @@ module Sauna
       session[:user] = nil
       session[:notice] = "Logged out"
       redirect '/'
+    end
+    
+    get '/css/:name.css' do
+      content_type 'text/css', :charset => 'utf-8'
+      sass ("sass/" + params[:name]).to_sym
     end
     
     before do
