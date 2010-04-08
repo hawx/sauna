@@ -48,6 +48,10 @@ module Sauna
       DataMapper.auto_upgrade!
     end
     
+    configure :production do
+      Datamapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://forum.db')
+    end
+    
     
     get '/' do 
       if Sauna.first.nil?
