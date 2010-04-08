@@ -8,11 +8,7 @@ require 'digest/sha1'
 # other gems
 require 'rdiscount'
 
-if RUBY_VERSION >= "1.9"
-  require 'mail'
-else
-  require 'pony'
-end
+require 'mail' if RUBY_VERSION >= "1.9"
 
 require 'sqlite3'
 require 'dm-core'
@@ -45,11 +41,11 @@ module Sauna
     
     configure :development do 
       DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/forum.db")
-      DataMapper.auto_upgrade!
     end
     
     configure :production do
-      Datamapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://forum.db')
+      DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://forum.db')
+      DataMapper.auto_upgrade!
     end
     
     
