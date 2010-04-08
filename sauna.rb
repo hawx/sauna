@@ -39,6 +39,7 @@ module Sauna
     set :root,   File.dirname(__FILE__)
     set :public, Proc.new { File.join(root, "public") }
     set :views,  Proc.new { File.join(root, "views") }
+    enable :static
     
     configure :development do 
       DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/forum.db")
