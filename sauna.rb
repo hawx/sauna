@@ -10,6 +10,7 @@ require 'rdiscount'
 require 'sass'
 
 require 'mail' if RUBY_VERSION >= "1.9"
+require 'aws/s3'
 
 require 'sqlite3'
 require 'dm-core'

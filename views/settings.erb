@@ -18,8 +18,13 @@
   </span>
   
   <span class="field top">
-    <label for="s3_secret">Amazon S3 Access Key ID</label>
+    <label for="s3_secret">Amazon S3 Secret Key</label>
     <input type="text" id="s3_secret" name="sauna[s3_secret]" value="<%= @sauna.s3_secret %>"/>
+  </span>
+  
+  <span class="field top">
+    <label for="s3_bucket">Amazon S3 Bucket Name</label>
+    <input type="text" id="s3_bucket" name="sauna[s3_bucket]" value="<%= @sauna.s3_bucket %>"/>
   </span>
   
   <input type="submit" class="right" value="Save Settings">

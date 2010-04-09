@@ -8,6 +8,7 @@ module Models
     property :created_at,      DateTime
     
     property :s3,              Boolean, :default => false
+    property :s3_bucket,       String
     property :s3_key_id,       String
     property :s3_secret,       String
     

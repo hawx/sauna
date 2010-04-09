@@ -124,12 +124,19 @@ module Models
     end
     
     def upload_avatar( file )
-      if Sauna.first.s3
-        p "hi"
-      else
-        self.avatar = true
-        self.avatar_type = file[:type]
-        self.avatar_size = File.size(file[:tempfile])
+      @sauna = Sauna.first
+      
+      self.avatar = true
+      self.avatar_type = file[:type]
+      self.avatar_size = File.size(file[:tempfile])
+      
+      if @sauna.s3
+        AWS::S3::Base.establish_connection!(
+          :access_key_id     => @sauna.s3_key_id,
+          :secret_access_key => @sauna.s3_secret
+        )
+        AWS::S3::S3Object.store(image_name(self.username, file[:type]), open(file[:tempfile]), @sauna.s3_bucket)
+      else 
         path = File.join(Dir.pwd, 
                          "/public/images/avatars", 
                          image_name(self.username, 
@@ -143,7 +150,16 @@ module Models
     
     def avatar_url
       if self.avatar
-        "/images/avatars/#{image_name(self.username, self.avatar_type)}"
+        @sauna = Sauna.first
+        if @sauna.s3
+          AWS::S3::Base.establish_connection!(
+            :access_key_id     => @sauna.s3_key_id,
+            :secret_access_key => @sauna.s3_secret
+          )
+          AWS::S3::S3Object.url_for(image_name(self.username, self.avatar_type), @sauna.s3_bucket, :use_ssl => true)
+        else
+          "/images/avatars/#{image_name(self.username, self.avatar_type)}"
+        end
       else
         "/images/avatar-missing.png"
       end
