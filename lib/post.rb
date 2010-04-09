@@ -79,15 +79,6 @@ module Models
       @tagging
     end
     
-    def tag_list
-      @tags = self.taggings
-      t = []
-      @tags.each do |tag|
-        t << Tag.get(tag.tag_id).name
-      end
-      t
-    end
-    
     def tags
       @tags = self.taggings
       t = []

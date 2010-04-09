@@ -1,6 +1,2 @@
-- On edit screens make inline labels check if text exists in an input.
-- Create a background, page style, same colour as now, add pages rotated at different angles to add depth.
-- Make it so that going to an id url eg. /post/:id or /discussion/:id or /tag/:id redirects to the name version and also redirects correctly so that posts end up in the correct discussion.
-- Allow members to be banned for a certain period of time.
-- Add email system using pony? So members don't have to have their email address shown.
 - Make a new model called 'Mention' so that when a member is mentioned in a post or comment they are notified, maybe by email but at have a list on their member page.
+- Add social network features eg. twitter, last.fm updates to member pages and a list of recent posts.
