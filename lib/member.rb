@@ -46,12 +46,14 @@ module Models
     def ban=(date)
       # should make this a little bit more flexible
       # or just add a datepicker from jQuery UI
-      date = Time.strptime(date, "%d/%m/%y")
-      
-      if self.banned?
-        self.ban_end = date
-      else
-        self.ban_end = date
+      unless date == ""
+        date = Time.strptime(date, "%d/%m/%y")
+        
+        if self.banned?
+          self.ban_end = date
+        else
+          self.ban_end = date
+        end
       end
     end
     
