@@ -9,3 +9,13 @@ desc "open todo list"
 task :todo do
   sh "open todo.txt"
 end
+
+desc "push to heroku"
+task :heroku do
+  sh "git push heroku"
+end
+
+desc "push to github"
+task :github do
+  sh "git push github"
+end
