@@ -79,7 +79,11 @@ module Models
     end
     
     def ban_end?
-      self.ban_end.strftime("%d/%m/%y")
+      if self.ban_end
+        self.ban_end.strftime("%d/%m/%y")
+      else
+        ""
+      end
     end
     
     def url
@@ -118,16 +122,20 @@ module Models
     end
     
     def upload_avatar( file )
-      self.avatar = true
-      self.avatar_type = file[:type]
-      self.avatar_size = File.size(file[:tempfile])
-      path = File.join(Dir.pwd, 
-                       "/public/images/avatars", 
-                       image_name(self.username, 
-                       file[:type]))
-      
-      File.open(path, "wb") do |f|
-        f.write(file[:tempfile].read)
+      if Sauna.first.s3
+        p "hi"
+      else
+        self.avatar = true
+        self.avatar_type = file[:type]
+        self.avatar_size = File.size(file[:tempfile])
+        path = File.join(Dir.pwd, 
+                         "/public/images/avatars", 
+                         image_name(self.username, 
+                         file[:type]))
+        
+        File.open(path, "wb") do |f|
+          f.write(file[:tempfile].read)
+        end
       end
     end
     
