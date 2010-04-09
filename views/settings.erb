@@ -1,0 +1,26 @@
+<header>
+  <h1>Settings</h1>
+</header>
+<form action="/settings" method="post" id="settings" enctype="multipart/form-date">
+  <span class="field top">
+    <label for="name">Forum Name</label>
+    <input type="text" id="name" name="sauna[name]" value="<%= @sauna.name %>"/>
+  </span>
+  
+  <span class="checkbox">
+    <label for="s3">Use Amazon S3?</label>
+    <input type="checkbox" id="s3" name="sauna[s3]" <% if @sauna.s3 %>checked="checked"<% end %>/>
+  </span>
+  
+  <span class="field top">
+    <label for="s3_key_id">Amazon S3 Access Key ID</label>
+    <input type="text" id="s3_key_id" name="sauna[s3_key_id]" value="<%= @sauna.s3_key_id %>"/>
+  </span>
+  
+  <span class="field top">
+    <label for="s3_secret">Amazon S3 Access Key ID</label>
+    <input type="text" id="s3_secret" name="sauna[s3_secret]" value="<%= @sauna.s3_secret %>"/>
+  </span>
+  
+  <input type="submit" class="right" value="Save Settings">
+</form>

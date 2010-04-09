@@ -86,6 +86,26 @@ module Sauna
       redirect '/'
     end
     
+    get '/settings/?' do
+      login_required
+      redirect '/' unless current_user.site_admin?
+    
+      @sauna = Sauna.first
+      erb :settings, :layout => :form
+    end
+    
+    post '/settings/?' do
+      @sauna = Sauna.first
+      if params[:sauna][:s3] == "on"
+        params[:sauna]['s3'] = true
+      else
+        params[:sauna]['s3'] = false
+      end
+      @sauna.attributes = params[:sauna]
+      @sauna.save
+      redirect '/'
+    end
+    
     get '/login' do
       @sauna = Sauna.first
       @title = "Login"

@@ -7,6 +7,10 @@ module Models
     property :name,            String
     property :created_at,      DateTime
     
+    property :s3,              Boolean, :default => false
+    property :s3_key_id,       String
+    property :s3_secret,       String
+    
     has n, :discussions
     has n, :members
     
