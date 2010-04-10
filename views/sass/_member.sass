@@ -1,6 +1,6 @@
 .member-view
   position: relative
-  padding-bottom: 150px
+  padding-bottom: 48px
   
   header
     position: relative
@@ -71,3 +71,36 @@
     padding-left: 10px
     height: 100px
     border-left: 1px solid silver
+    
+.activity-view
+  > header
+    width: $wrapper_width
+    display: block
+    border-bottom: 1px solid rgba(0, 0, 0, .8)
+    position: relative
+    padding: 5px 10px
+  
+    h1
+      font-size: 16px
+
+      
+  .activity-list
+    padding-bottom: 48px
+  
+    > li
+      padding: 10px 20px 10px
+      border-bottom: 1px solid rgba(0, 0, 0, .3)
+      
+      &:hover
+        background: rgba(0, 0, 0, .005)
+    
+      header
+        h1
+          font-size: 14px
+          
+      .content
+        font-size: 12px
+        padding-left: 12px
+        color: $text_faint
+        
+//

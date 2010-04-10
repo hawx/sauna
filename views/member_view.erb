@@ -19,5 +19,30 @@
     <li><span class="label">Join Date</span> <span><%= @member.join_date.strftime("%B %d, %Y at %H:%M:%S") %></span></li>
     <li><span class="label">Access Level</span> <span><%= @member.access_level %></span></li>
   </ul>
-  <div class="bio"><span class="label">Bio</span><%= @member.biography %></div>
+  <div class="bio"><span class="label">Bio</span><%= @member.biography %></div> 
+</div>
+
+<div class="activity-view">
+  <header>
+    <h1>Recent Activity</h1>
+  </header>
+  <ul class="activity-list">
+  <% @member.activity[0..4].each do |item| %>
+    <% if item[:type] == :post %>
+      <li>
+        <header>
+          <h1><a href="<% @member.url %>"><%= @member.username %></a> created a post <a href="<%= item[:url] %>"><%= item[:title] %></a> <time><%= item[:date].to_pretty %></time></h1>
+        </header>
+        <div class="content"><%= item[:content] %></div>
+      </li>
+    <% elsif item[:type] == :comment %>
+      <li>
+        <header>
+          <h1><a href="<% @member.url %>"><%= @member.username %></a> added a comment to <a href="<%= item[:url] %>"><%= item[:title] %></a> <time><%= item[:date].to_pretty %></time></h1>
+        </header>
+        <div class="content"><%= item[:content] %></div>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
 </div>

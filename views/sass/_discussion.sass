@@ -22,51 +22,51 @@
       right: 10px
       font-size: 12px
       
-  > .post-list
-    list-style: none
+.post-list
+  list-style: none
+  
+  li
+    position: relative
+    height: 30px
+    width: $wrapper_width + 18
+    padding: 18px 0
+    border-top: 1px solid rgb(255, 255, 255)
+    border-bottom: 1px solid rgba(0, 0, 0, .2)
     
-    li
-      position: relative
-      height: 30px
-      width: $wrapper_width + 18
-      padding: 18px 0
-      border-top: 1px solid rgb(255, 255, 255)
-      border-bottom: 1px solid rgba(0, 0, 0, .2)
+    &:hover
+      background: rgba(0, 0, 0, .005)
+    
+    header
+      position: absolute
+      left: 20px
       
-      &:hover
-        background: rgba(0, 0, 0, .005)
-      
-      header
-        position: absolute
-        left: 20px
-        
-        h1
-          font-size: 18px
-          
-        .meta
-          color: $text_faint
-          font-size: 12px
-          
-      .post-count
-        position: absolute
-        left: $wrapper_width - 200px
-        top: 23px
+      h1
         font-size: 18px
-        font-family: $serif_ff
         
-      .recent-post-info
-        position: absolute
-        left: $wrapper_width - 80px
-        width: 100px
+      .meta
         color: $text_faint
         font-size: 12px
         
-    .show-all, .new-post
-      display: block
-      width: 100%
-      padding: 5px 0px 5px 18px
-      border-top: 1px solid rgb(255, 255, 255)
-      border-bottom: 1px solid rgba(0, 0, 0, .2)
+    .post-count
+      position: absolute
+      left: $wrapper_width - 200px
+      top: 23px
+      font-size: 18px
+      font-family: $serif_ff
       
-      &:hover
-        background: rgba(0, 0, 0, .005)
+    .recent-post-info
+      position: absolute
+      left: $wrapper_width - 80px
+      width: 100px
+      color: $text_faint
+      font-size: 12px
+      
+  .show-all, .new-post
+    display: block
+    width: 100%
+    padding: 5px 0px 5px 18px
+    border-top: 1px solid rgb(255, 255, 255)
+    border-bottom: 1px solid rgba(0, 0, 0, .2)
+    
+    &:hover
+      background: rgba(0, 0, 0, .005)

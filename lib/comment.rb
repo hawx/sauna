@@ -24,7 +24,7 @@ module Models
     end
     
     def url
-      "#{self.parent.url}/#{self.id}"
+      "#{self.parent.url}##{self.id}"
     end
     
     def created_at_string

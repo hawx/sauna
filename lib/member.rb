@@ -88,6 +88,40 @@ module Models
       end
     end
     
+    def posts
+      Post.all(:created_by => self.id)
+    end
+    
+    def comments
+      Comment.all(:author => self.id)
+    end
+    
+    def activity
+      @posts = self.posts
+      @comments = self.comments
+      
+      @activity = []
+      @posts.each do |post|
+        @activity << {:type    => :post,
+                      :title   => post.title,
+                      :content => post.m_content,
+                      :url     => post.url,
+                      :date    => post.created_at}
+      end
+      @comments.each do |comment|
+        @activity << {:type    => :comment,
+                      :title   => comment.parent.title,
+                      :content => comment.m_content,
+                      :url     => comment.url,
+                      :date    => comment.updated_at}
+      end
+                      
+# [#<Models::Comment @id=1 @post_id=2 @author=1 @content="*Damn right!*" @created_at=Wed, 31 Mar 2010 18:50:26 +0100 @updated_at=Wed, 31 Mar 2010 18:53:54 +0100>, 
+#<Models::Post @id=1 @discussion_id=1 @title="First Post" @slug="first-post" @content=<not loaded> @created_at=Wed, 31 Mar 2010 17:29:43 +0100 @updated_at=Wed, 07 Apr 2010 12:10:46 +0100 @created_by=1 @updated_by=1>, 
+
+      @activity
+    end
+    
     def url
       "/member/#{self.username}"
     end
