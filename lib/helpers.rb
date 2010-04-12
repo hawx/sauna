@@ -1,6 +1,6 @@
 class String
   def markup
-    marked = RDiscount.new( self ).to_html
+    marked = RDiscount.new( self, :smart ).to_html
     marked.gsub!(/@([a-zA-Z0-9_-]+)/) do |u|
       if user = Models::Member.first(:username => $1)
         "<a href='#{user.url}'><span class='at'>@</span>#{user.username}</a>"
@@ -8,6 +8,7 @@ class String
         u
       end
     end
+    marked.gsub!(/&amp;/) { |a| "<abbr title='and'>&amp;</abbr>" }
     marked
   end
   

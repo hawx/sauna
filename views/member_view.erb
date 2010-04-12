@@ -22,6 +22,7 @@
   <div class="bio"><span class="label">Bio</span><%= @member.biography %></div> 
 </div>
 
+<% if @member.activity.size > 0 %>
 <div class="activity-view">
   <header>
     <h1>Recent Activity</h1>
@@ -33,16 +34,18 @@
         <header>
           <h1><a href="<% @member.url %>"><%= @member.username %></a> created a post <a href="<%= item[:url] %>"><%= item[:title] %></a> <time><%= item[:date].to_pretty %></time></h1>
         </header>
-        <div class="content"><%= item[:content] %></div>
       </li>
     <% elsif item[:type] == :comment %>
       <li>
         <header>
           <h1><a href="<% @member.url %>"><%= @member.username %></a> added a comment to <a href="<%= item[:url] %>"><%= item[:title] %></a> <time><%= item[:date].to_pretty %></time></h1>
         </header>
-        <div class="content"><%= item[:content] %></div>
       </li>
     <% end %>
   <% end %>
+  <% if @member.activity.size > 4 %>
+    <a href="<%= @member.url %>/activity" class="show-all">Show All</a>
+  <% end %>
   </ul>
 </div>
+<% end %>

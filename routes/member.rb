@@ -31,6 +31,12 @@ module Sauna
       @sauna = Sauna.first
       erb :member_view
     end
+    
+    get '/member/:m/activity/?' do
+      pass unless @member = Member.first(:username => params[:m])
+      @sauna = Sauna.first
+      erb :member_activity
+    end
   
     get '/member/:m/mail/?' do 
       pass unless @member = Member.first(:username => params[:m])

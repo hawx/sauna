@@ -63,7 +63,7 @@
     color: $text_faint
     
   .bio
-    width: $wrapper_width / 2 -10
+    width: $wrapper_width / 2 - 10
     position: absolute
     float: left
     top: 64px
@@ -74,7 +74,7 @@
     
 .activity-view
   > header
-    width: $wrapper_width
+    width: $wrapper_width -20
     display: block
     border-bottom: 1px solid rgba(0, 0, 0, .8)
     position: relative
@@ -88,6 +88,7 @@
     padding-bottom: 48px
   
     > li
+      width: $wrapper_width - 40
       padding: 10px 20px 10px
       border-bottom: 1px solid rgba(0, 0, 0, .3)
       
@@ -96,11 +97,24 @@
     
       header
         h1
-          font-size: 14px
+          font-size: 12px
+          
+          time
+            float: right
+            color: $text_faint
           
       .content
         font-size: 12px
         padding-left: 12px
         color: $text_faint
         
-//
+    .show-all
+      display: block
+      width: $wrapper_width - 20
+      padding: 5px 0px 5px 18px
+      border-top: 1px solid rgb(255, 255, 255)
+      border-bottom: 1px solid rgba(0, 0, 0, .2)
+      
+      &:hover
+        background: rgba(0, 0, 0, .005)
+        
