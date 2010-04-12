@@ -37,12 +37,22 @@ em
       family: $serif_ff
       style: italic
       size: 16px
-      
-  code abbr[title=and]
+    
+  code
     font: 
       family: $mono_ff
-      style: normal
-      size: 14px
+      size: 12px
+    border: 1px solid rgba(0, 0, 0, .1)
+    background: rgb(246, 247, 252)
+    padding: 0px 0.2em
+    +box-shadow(0, 1px, 0, white)
+    
+    abbr[title=and]
+      font: 
+        family: $mono_ff
+        style: normal
+        size: 12px
+  
 
 html
   font: 14px/18px $sans_ff

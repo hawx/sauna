@@ -1,3 +1,2 @@
 - Make a new model called 'Mention' so that when a member is mentioned in a post or comment they are notified, maybe by email but at have a list on their member page.
-- Add social network features eg. twitter, last.fm updates to member pages and a list of recent posts.
-- Make sure Amazon S3 credetials are stored more securely, should be pretty similar to the `Member` encryption stuff
+- Make sure Amazon S3 credetials are stored more securely, should be pretty similar to the `Member` encryption stuff __UPDATE__ you can't do it this way
