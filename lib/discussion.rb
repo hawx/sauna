@@ -34,13 +34,6 @@ module Models
       "/#{self.slug}"
     end
     
-    def created_at_string
-      self.created_at.strftime("%B %d, %Y at %H:%M")
-    end
-    def updated_at_string
-      self.updated_at.strftime("%B %d, %Y at %H:%M")
-    end
-    
     def creator
       Member.first( :id => self.created_by )
     end

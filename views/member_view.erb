@@ -16,7 +16,7 @@
     
     <li><span class="label">Username</span> <span><%= @member.username %></span></li>
     
-    <li><span class="label">Join Date</span> <span><%= @member.join_date.strftime("%B %d, %Y at %H:%M:%S") %></span></li>
+    <li><span class="label">Join Date</span> <span><%= @member.join_date.to_long %></span></li>
     <li><span class="label">Access Level</span> <span><%= @member.access_level %></span></li>
   </ul>
   <div class="bio"><span class="label">Bio</span><%= @member.biography %></div> 

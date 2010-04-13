@@ -19,7 +19,7 @@
       </header>
       <div class="post-count"><%= post.comments.size %></div>
       <div class="recent-post-info">
-        <time><a href="#"><%= post.updated_at_short_string %></a></time><br/>
+        <time><a href="#"><%= post.updated_at.to_short %></a></time><br/>
         by <a href="<%= post.updater.url %>"><%= post.updater.username %></a>
       </div>
     </li>

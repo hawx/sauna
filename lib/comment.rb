@@ -27,19 +27,6 @@ module Models
       "#{self.parent.url}##{self.id}"
     end
     
-    def created_at_string
-      self.created_at.strftime("%B %d, %Y at %H:%M")
-    end
-    def created_at_short_string
-      self.created_at.strftime("%B %d %Y")
-    end
-    def updated_at_string
-      self.updated_at.strftime("%B %d, %Y at %H:%M")
-    end
-    def updated_at_short_string
-      self.updated_at.strftime("%B %d %Y")
-    end
-    
     def parent
       Post.get( self.post_id )
     end

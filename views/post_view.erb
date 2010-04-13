@@ -15,7 +15,7 @@
     <a href="<%= @post.creator.url %>" class="username"><%= @post.creator.username %></a><br/>
     <span class="rank"><%= @post.creator.rank %></span><br/>
     
-    <time><%= @post.created_at_short_string %></time>
+    <time><%= @post.created_at.to_short %></time>
     
     <% if current_user.access_level > 1 || current_user == @post.creator %>
       <a href="<%= @post.url %>/edit" class="edit">edit</a>
@@ -32,7 +32,7 @@
         <a href="<%= comment.creator.url %>" class="username"><%= comment.creator.username %></a><br/>
         <span class="rank"><%= comment.creator.rank %></span><br/>
         
-        <time><%= comment.created_at_short_string %></time>
+        <time><%= comment.created_at.to_short %></time>
         
         <% if current_user.access_level > 1 || current_user == comment.creator %>
           <a href="<%= comment.url %>/edit" class="edit">edit</a>

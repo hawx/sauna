@@ -52,11 +52,11 @@ class DateTime
   end
   
   def to_long
-    self.created_at.strftime("%B %d, %Y at %H:%M")
+    self.strftime("%B %d, %Y at %H:%M")
   end
   
   def to_short
-    self.created_at.strftime("%B %d %Y")
+    self.strftime("%B %d %Y")
   end
 
 end

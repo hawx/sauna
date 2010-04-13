@@ -142,10 +142,6 @@ module Models
       self.id == 1
     end
     
-    def join_date_string
-      self.join_date.strftime("%B %d, %Y at %H:%M")
-    end
-    
     def rank
       case self.access_level
         when -1 then "Guest"
