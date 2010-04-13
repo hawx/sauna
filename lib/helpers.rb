@@ -50,5 +50,13 @@ class DateTime
     end
     return ((a+180000) / (60*60*24*7)).to_i.to_s+' weeks ago'
   end
+  
+  def to_long
+    self.created_at.strftime("%B %d, %Y at %H:%M")
+  end
+  
+  def to_short
+    self.created_at.strftime("%B %d %Y")
+  end
 
 end
