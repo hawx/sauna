@@ -1,10 +1,15 @@
-A list of current members.
-<ul>
-<% @members.each_with_index do |member, i| %>
-  <li>
-    <a href="<%= member.url %>">
-      <%= member.fname %> <%= member.sname %>
-    </a>
-   </li>
-<% end %>
-</ul>
+<div class="member-list">
+  <header>
+    <h1>Member List</h1>
+  </header>
+  <ul>
+  <% @members.each_with_index do |member, i| %>
+    <li>
+      <img class="avatar" src="<%= member.avatar_url %>"/>
+      <a class="username" href="<%= member.url %>"><%= member.username %></a>
+      <span class="rank"><%= member.rank %></span>
+      <time><%= member.join_date.to_long %></time>
+     </li>
+  <% end %>
+  </ul>
+</div>
