@@ -55,7 +55,7 @@ module Sauna
     end
     
     configure :test do
-      DataMapper.setup(:default, "sqlite://#{Dir.pwd}/test.db")
+      DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/test.db")
       DataMapper.auto_upgrade!
     end
     
