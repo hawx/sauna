@@ -37,18 +37,25 @@ module Sauna
     include Models
     use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
     
-    set :root,   File.dirname(__FILE__)
-    set :public, Proc.new { File.join(root, "public") }
-    set :views,  Proc.new { File.join(root, "views") }
-    enable :static
+    configure do 
+      set :root,   File.dirname(__FILE__)
+      set :public, Proc.new { File.join(root, "public") }
+      set :views,  Proc.new { File.join(root, "views") }
+      enable :static
+    end
     
     configure :development do 
-      DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/forum.db")
-      DataMapper::auto_upgrade!
+      DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/forum.db")
+      DataMapper.auto_upgrade!
     end
     
     configure :production do
       DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite3://forum.db')
+      DataMapper.auto_upgrade!
+    end
+    
+    configure :test do
+      DataMapper.setup(:default, "sqlite://#{Dir.pwd}/test.db")
       DataMapper.auto_upgrade!
     end
     
