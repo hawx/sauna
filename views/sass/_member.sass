@@ -50,123 +50,123 @@
         
   
   
-  .member-view
+.member-view
+  position: relative
+  padding-bottom: 48px
+  
+  header
     position: relative
-    padding-bottom: 48px
+    display: block
+    width: $wrapper_width
+    height: 64px
     
-    header
-      position: relative
-      display: block
-      width: $wrapper_width
-      height: 64px
-      
-      .avatar
-        position: absolute
-        width: 48px
-        height: 48px
-        top: 0
-        left: 0
-        
-      h1
-        position: absolute
-        top: 15px
-        left: 58px
-        font-size: 20px
-        
-      .rank
-        color: $text_faint
-        position: absolute
-        top: 32px
-        left: 58px
-        text-transform: lowercase
-        font:
-          size: 14px
-          family: $serif_ff
-          style: italic
-        
-      a
-        position: absolute
-        top: 7px
-        
-        &.delete
-          right: 0
-          
-        &.edit
-          right: 50px
-          
-    ul
-      width: $wrapper_width / 2 - 40
-      
-      li
-        width: $wrapper_width / 2 - 40
-        position: relative
-        height: 18px
-        
-        span
-          position: absolute
-          left: 100px
-          
-    .label
+    .avatar
+      position: absolute
+      width: 48px
+      height: 48px
+      top: 0
       left: 0
+      
+    h1
+      position: absolute
+      top: 15px
+      left: 58px
+      font-size: 20px
+      
+    .rank
+      color: $text_faint
+      position: absolute
+      top: 32px
+      left: 58px
+      text-transform: lowercase
       font:
-        size: 12px
+        size: 14px
         family: $serif_ff
         style: italic
-      color: $text_faint
       
-    .bio
-      width: $wrapper_width / 2 - 10
+    a
       position: absolute
-      float: left
-      top: 64px
-      margin-left: $wrapper_width / 2
-      padding-left: 10px
-      height: 100px
-      border-left: 1px solid silver
+      top: 7px
       
-  .activity-view
-    > header
-      width: $wrapper_width -20
-      display: block
-      border-bottom: 1px solid rgba(0, 0, 0, .8)
+      &.delete
+        right: 0
+        
+      &.edit
+        right: 50px
+          
+  ul
+    width: $wrapper_width / 2 - 40
+    
+    li
+      width: $wrapper_width / 2 - 40
       position: relative
-      padding: 5px 10px
-    
-      h1
-        font-size: 16px
-  
-        
-    .activity-list
-      padding-bottom: 48px
-    
-      > li
-        width: $wrapper_width - 40
-        padding: 10px 20px 10px
-        border-bottom: 1px solid rgba(0, 0, 0, .3)
-        
-        &:hover
-          background: rgba(0, 0, 0, .005)
+      height: 18px
       
-        header
-          h1
-            font-size: 12px
-            
-            time
-              float: right
-              color: $text_faint
-            
-        .content
-          font-size: 12px
-          padding-left: 12px
-          color: $text_faint
-          
-      .show-all
-        display: block
-        width: $wrapper_width - 20
-        padding: 5px 0px 5px 18px
-        border-top: 1px solid rgb(255, 255, 255)
-        border-bottom: 1px solid rgba(0, 0, 0, .2)
+      span
+        position: absolute
+        left: 100px
         
-        &:hover
-          background: rgba(0, 0, 0, .005)
+  .label
+    left: 0
+    font:
+      size: 12px
+      family: $serif_ff
+      style: italic
+    color: $text_faint
+    
+  .bio
+    width: $wrapper_width / 2 - 10
+    position: absolute
+    float: left
+    top: 64px
+    margin-left: $wrapper_width / 2
+    padding-left: 10px
+    height: 100px
+    border-left: 1px solid silver
+      
+.activity-view
+  > header
+    width: $wrapper_width -20
+    display: block
+    border-bottom: 1px solid rgba(0, 0, 0, .8)
+    position: relative
+    padding: 5px 10px
+  
+    h1
+      font-size: 16px
+
+      
+  .activity-list
+    padding-bottom: 48px
+  
+    > li
+      width: $wrapper_width - 40
+      padding: 10px 20px 10px
+      border-bottom: 1px solid rgba(0, 0, 0, .3)
+      
+      &:hover
+        background: rgba(0, 0, 0, .005)
+    
+      header
+        h1
+          font-size: 12px
           
+          time
+            float: right
+            color: $text_faint
+          
+      .content
+        font-size: 12px
+        padding-left: 12px
+        color: $text_faint
+        
+    .show-all
+      display: block
+      width: $wrapper_width - 20
+      padding: 5px 0px 5px 18px
+      border-top: 1px solid rgb(255, 255, 255)
+      border-bottom: 1px solid rgba(0, 0, 0, .2)
+      
+      &:hover
+        background: rgba(0, 0, 0, .005)
+        

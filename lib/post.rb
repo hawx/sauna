@@ -6,10 +6,9 @@ module Models
     
     property :id,             Serial
     property :discussion_id,  Integer
-    property :title,          String, :required => true, :unique => true
+    property :name,          String, :required => true, :unique => true
     property :slug,           String, :unique => true
-    
-    property :content,        Text, :required => true
+    property :raw_content,    Text,   :required => true
     
     property :created_at,     DateTime
     property :updated_at,     DateTime
@@ -23,9 +22,10 @@ module Models
     has n, :taggings
     has n, :tags, :through => :taggings
     
+    
     before(:save) do 
       self.updated_at = DateTime.now
-      self.slug = self.title.slugify
+      self.slug = self.name.slugify
     end
      
     def initialize( attributes={} )
@@ -36,6 +36,7 @@ module Models
     def updated=( user )
       self.updated_by = user
       self.updated_at = Time.now
+      p "'Post.updated = ' will be deprecated"
     end
 
     
@@ -51,19 +52,14 @@ module Models
       unless list.nil?
         list.gsub!(/\s/, '')
         list.split(',').each do |t|
-          tag(t)
+          unless tag = Tag.first(:name => t)
+            tag = Tag.new( :name => t )
+            tag.save
+          end
+          @tagging = Tagging.new(:tag => tag)
+          taggings << @tagging
         end
       end
-    end
-    
-    def tag( name )
-      unless @tag = Tag.first(:name => name)
-        @tag = Tag.new( :name => name )
-        @tag.save
-      end
-      @tagging = Tagging.new(:tag => @tag)
-      taggings << @tagging
-      @tagging
     end
     
     def tags
@@ -75,8 +71,12 @@ module Models
       t
     end
     
-    def m_content
-      self.content.markup
+    def content=(value)
+      self.raw_content = value
+    end
+    
+    def content
+      self.raw_content.markup
     end
     
     def creator

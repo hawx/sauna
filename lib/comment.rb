@@ -4,15 +4,17 @@ module Models
     
     include DataMapper::Resource
     
-    property :id,         Serial
-    property :post_id,    Integer
-    property :author,     Integer
+    property :id,          Serial
+    property :post_id,     Integer
+    property :raw_content, Text, :required => true
     
-    property :content,    Text,     :lazy => false
-    property :created_at, DateTime
-    property :updated_at, DateTime
+    property :created_at,  DateTime
+    property :updated_at,  DateTime
+    
+    property :created_by,  Integer
     
     belongs_to :post    
+    
     
     before(:save) do 
       self.updated_at = DateTime.now 
@@ -31,8 +33,12 @@ module Models
       Post.get( self.post_id )
     end
     
-    def m_content
-      self.content.markup
+    def content=(value)
+      self.raw_content = value
+    end
+    
+    def content
+      self.raw_content.markup
     end
     
     def creator

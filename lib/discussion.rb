@@ -5,9 +5,9 @@ module Models
     include DataMapper::Resource
     
     property :id,          Serial
-    property :name,        String, :required => true
+    property :name,        String,  :required => true
     property :slug,        String
-    property :description, String,  :default => "A forum to discuss things"
+    property :description, String
     property :public,      Boolean, :default => true
     
     property :created_at,  DateTime
@@ -17,7 +17,7 @@ module Models
     property :updated_by,  String
     
     belongs_to :sauna
-    has n, :posts
+    has n, :posts  
     
     
     before(:save) do 

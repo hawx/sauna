@@ -1,4 +1,5 @@
 class String
+
   def markup
     marked = RDiscount.new( self, :smart ).to_html
     marked.gsub!(/@([a-zA-Z0-9_-]+)/) do |u|
@@ -12,12 +13,15 @@ class String
     marked
   end
   
+  def truncate( length )
+    t = self.clone
+    t.truncate!( length )
+  end
+  
   def truncate!( length )
     self.split[0...length].join(" ")
   end
   
-  #  Need to make this a lot more robust, it should truncate the slug if
-  #  it gets too long, + other stuff. Another time maybe?
   def slugify
     slug = self.clone
     slug.gsub!(/[']+/, '')

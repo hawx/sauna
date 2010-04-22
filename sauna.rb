@@ -120,18 +120,7 @@ module Sauna
       erb :login, :layout => :form
     end
     
-    post '/login' do
-      #if Member.first(:username => params[:username]).logged_in
-      #  session[:notice] = "You are already logged in, log out and try again"
-      #  if session[:return_to]
-      #    redirect_url = session[:return_to]
-      #    session[:return_to] = false
-      #    redirect redirect_url
-      #  else
-      #    redirect '/'
-      #  end
-      #end
-      
+    post '/login' do     
       if user = Member.authenticate(params[:username], params[:password])
         session[:user] = user.id
         session[:notice] = "Logged in as #{user.username}"
@@ -163,7 +152,6 @@ module Sauna
     end
     
     before do
-      # this stops the same message from coming up twice or more
       if session[:notice] == session[:oldnotice]
         session[:notice] = ""
       end

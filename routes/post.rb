@@ -28,7 +28,7 @@ module Sauna
       pass unless @discussion = Discussion.first(:slug => params[:d])
       pass unless @post = Post.first(:slug => params[:p])
       @sauna = Sauna.first
-      @title = "#{@sauna.name} > #{@post.title}"
+      @title = "#{@sauna.name} > #{@post.name}"
       erb :post_view
     end
     
@@ -39,7 +39,7 @@ module Sauna
       pass unless @discussion = Discussion.first(:slug => params[:d])
       pass unless @post = Post.first(:slug => params[:p])
       @sauna = Sauna.first
-      @title = "Edit: #{@post.title}"
+      @title = "Edit: #{@post.name}"
       
       redirect "/#{params[:d]}/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @post.creator.id.to_s
       erb :post_edit, :layout => :form
@@ -47,7 +47,7 @@ module Sauna
     post '/:d/:p/edit/?' do
       pass unless @post = Post.first(:slug => params[:p])
       @post.attributes = params[:post]
-      @post.updated = session[:user]
+      @post.updated_by = session[:user]
       if @post.save
         session[:notice] = "You edited a post"
         redirect "/#{params[:d]}/#{params[:p]}"
@@ -84,8 +84,8 @@ module Sauna
       @comment.attributes = params[:comment]
       @comment.author = session[:user]
       @comment.post_id = params[:p]
-      
-      @post.updated = session[:user]
+
+      @post.updated_by = session[:user]
       @comment.save
       @post.save
       
@@ -101,7 +101,7 @@ module Sauna
       pass unless @comment = Comment.first(:id => params[:c])
       
       @sauna = Sauna.first
-      @title = "Edit Comment for #{@post.title}"
+      @title = "Edit Comment for #{@post.name}"
       
       redirect "/#{params[:d]}/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @comment.creator.id.to_s
       erb :comment_edit, :layout => :form

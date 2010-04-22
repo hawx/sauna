@@ -9,8 +9,8 @@ $form_padding: 40px
   margin-left: -($form_width / 2 + $form_padding)
   padding: $form_padding
   width: $form_width
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  +box-shadow(0, 3px, 5px, rgba(0, 0, 0, 0.3))
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .5)
+  +box-shadow(0, 3px, 5px, rgba(0, 0, 0, .3))
   
   header
     *
@@ -45,21 +45,34 @@ input[type=submit]
   border: none
   position: relative
   cursor: pointer
-  background: rgb(52, 101, 255) url(/images/button-overlay.png)
+  
+  $bg: rgb(150, 100, 100)
+  background: $bg
+  background: -webkit-gradient(linear, left top, left bottom, from($bg), to(darken($bg, 10%)))
+  
   padding: 5px 10px 6px
   color: white
   text-decoration: none
   font-weight: bold
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, .25)
   
-  border: 1px solid
-  border-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.2)
+  border: 1px solid rgba(0, 0, 0, .1)
+  border-top-color: rgba(255, 255, 255, .1)
+  border-bottom-color: rgba(0, 0, 0, .2)
   +border-radius(5px)
   +box-shadow(0, 1px, 0px, rgb(255, 255, 255))
-  +transition(background, 0.25s)
+  +transition(background, .25s)
   
   &:hover
-    background-color: rgb(102, 127, 217)
+    $bg: $link_color_h
+    background: $bg
+    background: -webkit-gradient(linear, left top, left bottom, from($bg), to(darken($bg, 10%)))
+    
+  &:active
+    $bg: $link_color_h
+    background: $bg
+    background: -webkit-gradient(linear, left top, left bottom, from(darken($bg,10%)), to($bg))
+    color: rgba(255, 255, 255, .8)
 
 input.right
   float: right
@@ -87,11 +100,11 @@ input.right
     z-index: 1
     display: block
     padding-left: 6px
-    opacity: 0.75
-    +transition(opacity, 0.15s, linear)
+    opacity: .75
+    +transition(opacity, .15s, linear)
     
   label.focus
-    opacity: 0.35
+    opacity: .35
     
   label.has-text
     opacity: 0

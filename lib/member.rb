@@ -103,15 +103,15 @@ module Models
       @activity = []
       @posts.each do |post|
         @activity << {:type    => :post,
-                      :title   => post.title,
-                      :content => post.m_content,
+                      :title   => post.name,
+                      :content => post.content,
                       :url     => post.url,
                       :date    => post.created_at}
       end
       @comments.each do |comment|
         @activity << {:type    => :comment,
                       :title   => comment.parent.title,
-                      :content => comment.m_content,
+                      :content => comment.content,
                       :url     => comment.url,
                       :date    => comment.updated_at}
       end

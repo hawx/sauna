@@ -2,7 +2,7 @@
   <header>
     <h1>
       <a href="<%= @discussion.url %>"><%= @discussion.name %></a>: 
-      <%= @post.title %>  
+      <%= @post.name %>  
       <span class="tags">
         <% @post.tags.each do |tag| %>
           <a href="<%= tag.url %>"><span class="hash">#</span><%= tag.name %></a>
@@ -22,7 +22,7 @@
       <a href="<%= @post.url %>/delete" class="delete">delete</a>
     <% end %>
   </div>
-  <div class="content"><%= @post.m_content %></div>
+  <div class="content"><%= @post.content %></div>
   
   <ul class="comment-list">
   <% @post.comments.each do |comment| %>
@@ -39,7 +39,7 @@
           <a href="<%= comment.url %>/delete" class="delete">delete</a>
         <% end %>
       </div>
-      <div class="content"><%= comment.m_content %></div>
+      <div class="content"><%= comment.content %></div>
     </li>
   <% end %>
   
