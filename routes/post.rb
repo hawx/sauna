@@ -41,6 +41,7 @@ module Sauna
       @sauna = Sauna.first
       @title = "Edit: #{@post.name}"
       
+      #redirect "/#{params[:d]}/#{params[:p]}" unless @post.editable_by(current_user)
       redirect "/#{params[:d]}/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @post.creator.id.to_s
       erb :post_edit, :layout => :form
     end
@@ -82,7 +83,7 @@ module Sauna
       
       @comment = @post.comments.new
       @comment.attributes = params[:comment]
-      @comment.author = session[:user]
+      @comment.created_by = session[:user]
       @comment.post_id = params[:p]
 
       @post.updated_by = session[:user]
@@ -103,7 +104,8 @@ module Sauna
       @sauna = Sauna.first
       @title = "Edit Comment for #{@post.name}"
       
-      redirect "/#{params[:d]}/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @comment.creator.id.to_s
+      redirect "/#{params[:d]}/#{params[:p]}" unless @comment.editable_by?(current_user)
+      #redirect "/#{params[:d]}/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @comment.creator.id.to_s
       erb :comment_edit, :layout => :form
     end
     post '/:d/:p/:c/edit/?' do

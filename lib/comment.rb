@@ -26,7 +26,7 @@ module Models
     end
     
     def url
-      "#{self.parent.url}##{self.id}"
+      "#{self.parent.url}/#{self.id}"
     end
     
     def parent
@@ -42,7 +42,20 @@ module Models
     end
     
     def creator
-      Member.first( :id => self.author )
+      Member.first( :id => self.created_by )
+    end
+    
+    def creatable_by(user)
+      true
+    end
+    def updatable_by?(user)
+      creator == user || user.admin?
+    end
+    def editable_by?(user)
+      updatable_by?(user)
+    end
+    def destroyable_by?(user)
+      updatable_by(user)
     end
     
   end

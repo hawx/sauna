@@ -6,7 +6,7 @@
 
   <span class="field top">
     <label for="content">Content</label>
-    <textarea type="text" id="content" name="comment[content]"><%= @comment.content %></textarea>
+    <textarea type="text" id="content" name="comment[content]"><%= @comment.raw_content %></textarea>
   </span>
   <input class="right" type="submit" value="Update comment">
   
