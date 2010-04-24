@@ -142,7 +142,7 @@ module Sauna
       else
         session[:notice] = "deletion failed, for whatever reason"
       end
-      redirect "/#{params[:d]}/post/#{params[:p]}"
+      redirect "/#{params[:d]}/#{params[:p]}"
     end
   
   end
