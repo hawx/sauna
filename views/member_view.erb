@@ -41,6 +41,12 @@
           <h1><a href="<% @member.url %>"><%= @member.username %></a> added a comment to <a href="<%= item[:url] %>"><%= item[:title] %></a> <time><%= item[:date].to_pretty %></time></h1>
         </header>
       </li>
+    <% elsif item[:type] == :discussion %>
+      <li>
+        <header>
+          <h1><a href="<% @member.url %>"><%= @member.username %></a> created a discussion <a href="<%= item[:url] %>"><%= item[:title] %></a> <time><%= item[:date].to_pretty %></time></h1>
+        </header>
+      </li>
     <% end %>
   <% end %>
   <% if @member.activity.size > 4 %>

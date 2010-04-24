@@ -22,7 +22,7 @@ module Sauna
       
       @discussion = @sauna.discussions.new
       @discussion.attributes = params[:discussion]
-      @discussion.created_by = session[:user]
+      @discussion.created_by = session[:user].to_i
       
       @discussion.save
       

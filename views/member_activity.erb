@@ -18,6 +18,13 @@
         </header>
         <div class="content"><%= item[:content] %></div>
       </li>
+    <% elsif item[:type] == :discussion %>
+      <li>
+        <header>
+          <h1><a href="<% @member.url %>"><%= @member.username %></a> created a discussion <a href="<%= item[:url] %>"><%= item[:title] %></a> <time><%= item[:date].to_pretty %></time></h1>
+        </header>
+        <div class="content"><%= item[:content] %></div>
+      </li>
     <% end %>
   <% end %>
   </ul>

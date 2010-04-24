@@ -87,6 +87,10 @@ module Models
       end
     end
     
+    def discussions
+      Discussion.all(:created_by => self.id)
+    end
+    
     def posts
       Post.all(:created_by => self.id)
     end
@@ -96,10 +100,18 @@ module Models
     end
     
     def activity
+      p @discussions = self.discussions
       @posts = self.posts
       @comments = self.comments
       
       @activity = []     
+      @discussions.each do |discussion|
+        @activity << {:type    => :discussion,
+                      :title   => discussion.name,
+                      :content => discussion.description,
+                      :url     => discussion.url,
+                      :date    => discussion.created_at}
+      end
       @posts.each do |post|
         @activity << {:type    => :post,
                       :title   => post.name,
