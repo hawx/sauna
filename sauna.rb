@@ -164,3 +164,5 @@ load 'routes/discussion.rb'
 load 'routes/post.rb'
 load 'routes/member.rb'
 load 'routes/tag.rb'
+
+load 'routes/ajax.rb'
