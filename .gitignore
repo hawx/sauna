@@ -1,6 +1,7 @@
 # file types
 *.psd
 *.db
+todo.txt
 
 # folders
 .sass-cache
