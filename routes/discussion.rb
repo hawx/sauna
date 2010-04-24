@@ -6,7 +6,7 @@ module Sauna
       @discussions = Discussion.all
       @title = "#{@sauna.name}: Discussions"
       
-      erb :discussion_list
+      template :discussion_list
     end
     
     get '/discussion/new/?' do
@@ -14,7 +14,7 @@ module Sauna
       @sauna = Sauna.first
       @title = "New Discussion"
       
-      erb :discussion_new, :layout => :form
+      template :discussion_new, :form
     end
     
     post '/discussion/create/?' do  
@@ -34,7 +34,7 @@ module Sauna
       pass unless @discussion = Discussion.first(:slug => params[:d])
       @sauna = Sauna.first
       @title = "#{@sauna.name} > #{@discussion.name}"
-      erb :discussion_view
+      template :discussion_view
     end
     
     get '/:d/edit/?' do

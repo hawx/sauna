@@ -65,11 +65,11 @@ module Sauna
         @sauna = Sauna.new
         @sauna.name = "Setup"
         @title = "Setup"
-        erb :setup, :layout => :form
+        template :setup, :form
       else
         @sauna = Sauna.first
         @title = @sauna.name
-        erb :index
+        template :index
       end
     end
     
@@ -99,7 +99,7 @@ module Sauna
       redirect '/' unless current_user.site_admin?
     
       @sauna = Sauna.first
-      erb :settings, :layout => :form
+      template :settings, :form
     end
     
     post '/settings/?' do
@@ -117,7 +117,7 @@ module Sauna
     get '/login' do
       @sauna = Sauna.first
       @title = "Login"
-      erb :login, :layout => :form
+      template :login, :form
     end
     
     post '/login' do     
@@ -151,6 +151,18 @@ module Sauna
       sass ("sass/" + params[:name]).to_sym
     end
     
+    helpers do
+      def template(template, layout = false)
+        parts = template.to_s.split("_")
+        path = parts.join("/").to_sym
+        if layout == :form
+          erb path, :layout => :form
+        else
+          erb path
+        end
+      end
+    end
+       
     before do
       if session[:notice] == session[:oldnotice]
         session[:notice] = ""

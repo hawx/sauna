@@ -5,7 +5,7 @@ module Sauna
       @sauna = Sauna.first
       @tags = Tag.all
       
-      erb :tag_list
+      template :tag_list
     end
     
     get '/tag/:t/?' do
@@ -15,7 +15,7 @@ module Sauna
       @tagging = Tagging.all.tag.all(:name => params[:t])
       @posts = @tagging.posts.all
       
-      erb :tag_view
+      template :tag_view
     end
   
   end

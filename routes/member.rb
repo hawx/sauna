@@ -5,13 +5,13 @@ module Sauna
     get '/member/?' do
       @sauna = Sauna.first
       @members = Member.all
-      erb :member_list
+      template :member_list
     end
     
     # create members
     get '/member/new/?' do
       @sauna = Sauna.first
-      erb :member_new, :layout => :form
+      template :member_new, :form
     end
     post '/member/create/?' do
       @sauna = Sauna.first
@@ -29,19 +29,19 @@ module Sauna
     get '/member/:m/?' do
       pass unless @member = Member.first(:username => params[:m])
       @sauna = Sauna.first
-      erb :member_view
+      template :member_view
     end
     
     get '/member/:m/activity/?' do
       pass unless @member = Member.first(:username => params[:m])
       @sauna = Sauna.first
-      erb :member_activity
+      template :member_activity
     end
   
     get '/member/:m/mail/?' do 
       pass unless @member = Member.first(:username => params[:m])
       @sauna = Sauna.first
-      erb :member_mail, :layout => :form
+      template :member_mail
     end
     post '/member/:m/mail/?' do
       @member = Member.first(:username => params[:m])
@@ -71,7 +71,7 @@ module Sauna
       
       @sauna = Sauna.first
   
-      erb :member_edit, :layout => :form
+      template :member_edit, :form
     end
     post '/member/:m/edit?' do
       @member = Member.first(:username => params[:m])

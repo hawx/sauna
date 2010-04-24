@@ -7,7 +7,7 @@ module Sauna
       @sauna = Sauna.first
       @title = "New Post"
       
-      erb :post_new, :layout => :form
+      template :post_new, :form
     end
     post '/:d/post/create/?' do
       @discussion = Discussion.first(:slug => params[:d])
@@ -29,7 +29,7 @@ module Sauna
       pass unless @post = Post.first(:slug => params[:p])
       @sauna = Sauna.first
       @title = "#{@sauna.name} > #{@post.name}"
-      erb :post_view
+      template :post_view
     end
     
     # edit posts
@@ -43,7 +43,7 @@ module Sauna
       
       #redirect "/#{params[:d]}/#{params[:p]}" unless @post.editable_by(current_user)
       redirect "/#{params[:d]}/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @post.creator.id.to_s
-      erb :post_edit, :layout => :form
+      template :post_edit, :form
     end
     post '/:d/:p/edit/?' do
       pass unless @post = Post.first(:slug => params[:p])
@@ -76,7 +76,7 @@ module Sauna
       login_required
       @sauna = Sauna.first
       @title = "New Comment"
-      erb :comment_new, :layout => :form
+      template :comment_new, :form
     end
     post '/:d/:p/create/?' do
       @post = Discussion.first(:slug => params[:d]).posts.first(:slug => params[:p])
@@ -119,7 +119,7 @@ module Sauna
       
       redirect "/#{params[:d]}/#{params[:p]}" unless @comment.editable_by?(current_user)
       #redirect "/#{params[:d]}/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @comment.creator.id.to_s
-      erb :comment_edit, :layout => :form
+      template :comment_edit, :form
     end
     post '/:d/:p/:c/edit/?' do
       @comment = Comment.first(:id => params[:c])
