@@ -42,10 +42,25 @@
       <div class="content"><%= comment.content %></div>
     </li>
   <% end %>
-  
-    <li class="new-comment">
-      <div class="content"><a href="<%= @post.url %>/new">Add comment</a></div>
-    </li>
-  
   </ul>
+  
+  <% unless current_user.guest? %>
+  <div class="form">
+    <div class="meta">
+      <img class="avatar" src="<%= current_user.avatar_url %>"/>
+      <a href="<%= current_user.url %>" class="username"><%= current_user.username %></a><br/>
+      <span class="rank"><%= current_user.rank %></span><br/>
+      
+      <time><%= DateTime.now.to_short %></time>
+    </div>
+    
+    <div class="content">
+      <form action="<%= @post.url %>/create" class="new-comment ajax">
+        <textarea type="text" id="content" name="comment[content]"></textarea>
+        <input class="right" type="submit" value="Create comment">
+      </form>
+    </div>
+  </div>
+  <% end %>
+  
 </div>

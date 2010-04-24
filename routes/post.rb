@@ -90,7 +90,20 @@ module Sauna
       @comment.save
       @post.save
       
-      redirect "/#{params[:d]}/#{params[:p]}"
+      %{<li>
+        <div class="meta">
+          <img class="avatar" src="#{ @comment.creator.avatar_url }"/>
+          <a href="#{ @comment.creator.url }" class="username">#{ @comment.creator.username }</a><br/>
+          <span class="rank">#{ @comment.creator.rank }</span><br/>
+          
+          <time>#{ @comment.created_at.to_short }</time>
+          
+          <a href="#{ @comment.url }/edit" class="edit">edit</a>
+          <a href="#{ @comment.url }/delete" class="delete">delete</a>
+        </div>
+        <div class="content">#{ @comment.content }</div>
+      </li>}
+      
     end
     
     # edit comment
@@ -121,7 +134,7 @@ module Sauna
     
     get '/:d/:p/:c/delete/?' do
       login_required
-      @comment = Discussion.get(params[:d]).posts.get(params[:p]).comments.get(params[:c])
+      @comment = Comment.get(params[:c])
       redirect "/#{params[:d]}/post/#{params[:p]}" unless current_user.admin? || current_user.id.to_s == @comment.creator.id.to_s
       
       if @comment.destroy!

@@ -4,7 +4,6 @@ module Models
     
     include DataMapper::Resource
     
-
     property :id,               Serial
     property :email,            String,  :unique   => true
     property :fname,            String
@@ -100,7 +99,7 @@ module Models
       @posts = self.posts
       @comments = self.comments
       
-      @activity = []
+      @activity = []     
       @posts.each do |post|
         @activity << {:type    => :post,
                       :title   => post.name,
@@ -110,7 +109,7 @@ module Models
       end
       @comments.each do |comment|
         @activity << {:type    => :comment,
-                      :title   => comment.parent.title,
+                      :title   => comment.parent.name,
                       :content => comment.content,
                       :url     => comment.url,
                       :date    => comment.updated_at}
