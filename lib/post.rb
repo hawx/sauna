@@ -6,7 +6,7 @@ module Models
     
     property :id,             Serial
     property :discussion_id,  Integer
-    property :name,          String, :required => true, :unique => true
+    property :name,           String, :required => true, :unique => true
     property :slug,           String, :unique => true
     property :raw_content,    Text,   :required => true
     

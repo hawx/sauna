@@ -1,42 +1,40 @@
-### Suana
+# Suana
 
-Sauna is a small forum app written in Ruby and using Sinatra.
+Sauna is a small forum app written in Ruby and using Sinatra. It runs on Heroku, and probably anything else.
+It contains all the usual stuff you'd expect from a forum; members, posts, etc.
+Check out the [demo](http://sauna.heroku.com/).
 
+## To Install & Run
 
-Class Breakdown
----------------
-Sauna > Discussion > Post > Comment
+To get the forum just clone this project in the directory of your choice.
 
+    git clone git://github.com/hawx/sauna.git
 
-Sauna is the container, it also holds all of the options and settings, from setup, etc.
+Then to run start the server you normally use, eg.
 
-Discussion holds a number of posts, there can be multiple Discussions.
+    thin start -R config.ru
 
-Post is the first post on a certain subject and also contains a number of comments.
+Then navigate to the correct url to see the setup page. Fill this form out and press setup. Done! 
+Well you may want to start a discussion as the message says so follow the link, login and create the first discussion. Then just play around and use it like you would a normal forum!
 
-Comments are small posts, they can also be replies to other comments with Twitter style syntax.
+## Avatar Storage
 
-Each post can have an optional Topic (tag)
+Members can have avatars, these can either be stored on the server or with Amazon S3 (necessary to run on Heroku). To set up Amazon S3 you need to log in and navigate to `/settings`, then just add your credentials in the relevent fields and tick the checkbox.
 
+## Hacking
 
-- - -
-# Naming Convention (draft)
+This was meant to be quite small and simple so it would be easy to hack new features onto, though somewhere along the way it became a little more complex than it should have been. Feel free to fork and improve...
 
-@sauna - (global) holds settings, and global variables like title
-@discussion - (only available for pages showing a single discussion) holds the discussion being viewed
-@post - (only for pages showing a single post) holds the post being viewed
-@comment - (only for pages showing a single comment) holds the comment being viewed
-@member - (only for pages showing members) holds the members data
+#### For Theming
 
-current\_user - (global) holds the logged in user, and if not a GuestUser object is returned
+To change the style of it you only need to venture into `views/`. I've split the templates into different folders based on what they are for. These are the variables you can use (not available in all circumstances, apply common sense), in some cases plurals are used for lists and stuff:
 
+    current_user -> the user who is logged in
+    @member(s) -> the member(s)
+    @post(s) -> the post(s)
+    @discussion(s) -> the discussion(s)
+    @comment(s) -> the comment(s)
+    @tag(s) -> the tag(s)
+    @topic(s) -> the topic(s)
 
-- - -
-# Forms
-
-Forms will return items as they are named in the model for the object, but inside a hash of the name of the object, e.g. for Member:
-
-`<input name="member[fname]" />`
-
-This makes it very easy to write the values.
-There is also a specific way of making forms, certain classes are also available for styling.
+If you want to see what properties each of these have look for the corresponding file in `lib/` and check the properties and methods.
