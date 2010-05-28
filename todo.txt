@@ -1,6 +1,0 @@
-- Make a new model called 'Mention' so that when a member is mentioned in a post or comment they are notified, maybe by email but at have a list on their member page.
-- Make sure Amazon S3 credetials are stored more securely, should be pretty similar to the `Member` encryption stuff __UPDATE__ you can't do it this way
-- Started adding some permission stuff similar to [http://github.com/jnunemaker/canable/]
-- Add AJAX magic
-- Add edits to member activity
-- Make sure updating a post changes who updated discussions, or create a proxy method that just checks the posts contained within for changes (probably best way)
